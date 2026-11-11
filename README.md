@@ -97,6 +97,10 @@ Si Brasil subsidia 4 sectores, Paraguay le vende menos justo en esos sectores
 (−4,25 %) y más en los demás. Cuando el subsidio se recorta en un tercio, como
 haría una disciplina, la caída se reduce a −3,19 %.
 
+<sub>La simulación se corrió con el modelo GTAP v7 y una base GTAP con licencia, que no
+se puede redistribuir; por eso su código no está en este repositorio. Las cifras están
+en [`resultados/gtap_por_sector.csv`](resultados/gtap_por_sector.csv).</sub>
+
 ### 5. La réplica del paper
 
 Tabla 3, columna 5 del paper (todo el mundo, 8,5 millones de observaciones):
