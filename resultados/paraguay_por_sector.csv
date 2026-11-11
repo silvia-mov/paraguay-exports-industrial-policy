@@ -1,0 +1,7 @@
+Especificación,Grupo,N,obs_SUBS>0,b_IP,p_IP,b_SUBS,p_SUBS,Mercosur_b,Mercosur_p
+Logaritmo,Agricultura y otros primarios (CIIU 01-14),1165,39,0.414108,9.09661e-05,5.6894,1.11022e-15,2.31057,5.40225e-24
+Logaritmo,"Alimentos, bebidas y tabaco (CIIU 15-16)",2490,58,0.121772,0.268367,0.167593,0.70826,0.177636,0.0685587
+Logaritmo,Otras manufacturas (CIIU 17-37),2876,146,0.0745039,0.372369,0.363441,0.198932,0.195651,0.000585965
+Tasa de crecimiento,Agricultura y otros primarios (CIIU 01-14),737,34,7.23495,0.40313,-30.1608,0.375622,-2.81865,0.674121
+Tasa de crecimiento,"Alimentos, bebidas y tabaco (CIIU 15-16)",1697,48,-12.1477,0.0127762,13.5638,0.411782,-7.62638,0.0141486
+Tasa de crecimiento,Otras manufacturas (CIIU 17-37),1900,101,-0.917001,0.920885,67.9136,0.00846455,21.7209,3.22474e-07

@@ -1,0 +1,18 @@
+Especificación,Prueba,b_SUBS,p
+Logaritmo,Errores agrupados por importador (base),1.06938,1.51221e-05
+Logaritmo,Bootstrap salvaje (9.999 repeticiones),1.06938,0.0711071
+Logaritmo,Sorteo de socios placebo (1.999),1.06938,0.048
+Logaritmo,Errores agrupados por importador y año,1.06938,0.0189656
+Logaritmo,Sin Brasil,1.08378,9.42996e-07
+Logaritmo,Efectos fijos de producto,0.192216,0.406895
+Logaritmo,Efectos fijos de importador por producto,0.0595837,0.69614
+Logaritmo,Bootstrap del efecto neto del Mercosur,0.489138,0.165917
+Tasa de crecimiento,Errores agrupados por importador (base),44.2519,5.86295e-05
+Tasa de crecimiento,Bootstrap salvaje (9.999 repeticiones),44.2519,0.0318032
+Tasa de crecimiento,Sorteo de socios placebo (1.999),44.2519,0.0455
+Tasa de crecimiento,Errores agrupados por importador y año,44.2519,0.0520275
+Tasa de crecimiento,Sin Brasil,29.4093,0.0122576
+Tasa de crecimiento,Efectos fijos de producto,64.3115,1.52461e-05
+Tasa de crecimiento,Efectos fijos de importador por producto,55.9227,5.80851e-05
+Tasa de crecimiento,Bootstrap del efecto neto del Mercosur,7.98239,0.607761
+Niveles (Poisson),PPML con los mismos efectos fijos,1.92557,0.0216495

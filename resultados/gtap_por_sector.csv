@@ -1,0 +1,17 @@
+Escenario,Sector,Subsidiado,Base 2014 (mill. USD),Después (mill. USD),Variación (%)
+S1,Oleaginosas,True,249.34,228.62,-8.31
+S1,Cereales,True,136.8,135.22,-1.15
+S1,Carne bovina,False,192.88,263.68,36.71
+S1,Aceites vegetales,False,36.16,42.52,17.59
+S1,Otros alimentos,True,146.17,140.05,-4.19
+S1,Electricidad,False,273.71,325.6,18.96
+S1,Manufacturas livianas,False,153.69,190.86,24.19
+S1,Otras manufacturas,True,244.47,239.88,-1.88
+S3,Oleaginosas,True,249.34,234.42,-5.98
+S3,Cereales,True,136.8,135.22,-1.15
+S3,Carne bovina,False,192.88,236.37,22.55
+S3,Aceites vegetales,False,36.16,40.14,11.01
+S3,Otros alimentos,True,146.17,141.34,-3.3
+S3,Electricidad,False,273.71,306.82,12.1
+S3,Manufacturas livianas,False,153.69,177.05,15.2
+S3,Otras manufacturas,True,244.47,241.02,-1.41

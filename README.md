@@ -1,76 +1,157 @@
-# Políticas industriales de los socios comerciales y exportaciones de Paraguay (2012–2022)
+<div align="center">
 
-Réplica en **Python** y **R** del paquete de reproducibilidad de
-**Barattieri, Mattoo y Taglioni (2024)**, *Trade Effects of Industrial Policies:
-Are Preferential Agreements a Shield?* (Banco Mundial, Policy Research Working
-Paper 10806), con tres correcciones al código original y una extensión para
-estimar el efecto en **un país exportador** (Paraguay en la tesis, pero sirve
-para cualquier otro).
+# 🇵🇾 Políticas industriales de los socios y exportaciones de Paraguay
 
-Trabajo Final de Grado en Economía, Universidad Nacional de Asunción (2026).
+**¿Qué pasa con las exportaciones de un país pequeño cuando sus socios comerciales subsidian su propia producción?<br>¿Lo protege un acuerdo comercial con reglas sobre subsidios?**
 
-> 🇬🇧 *English summary at the end.*
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![R](https://img.shields.io/badge/R-4.3+-276DC3?logo=r&logoColor=white)
+![Stata](https://img.shields.io/badge/Stata-18-1A5F91)
+![Licencia](https://img.shields.io/badge/licencia-BSD--3-green)
+![Período](https://img.shields.io/badge/datos-2012–2022-lightgrey)
+
+Trabajo Final de Grado en Economía · Universidad Nacional de Asunción · 2026
+
+[Resultados](#resultados) · [Robustez](docs/robustez.md) · [Cómo correrlo](#cómo-correrlo) · [Correcciones al código original](docs/correcciones.md) · [English](#-english-summary)
+
+</div>
 
 ---
 
-## ¿Qué pregunta responde?
+## En pocas palabras
 
-Cuando un socio comercial aplica una **política industrial** (subsidios,
-préstamos estatales, incentivos fiscales…), ¿qué pasa con las exportaciones que
-otros países le venden en ese producto? ¿Y protege un **acuerdo comercial
-preferencial** con reglas sobre subsidios?
+- 📚 **Base:** réplica del paper de **Barattieri, Mattoo y Taglioni (2024)** del
+  Banco Mundial, *Trade Effects of Industrial Policies: Are Preferential Agreements
+  a Shield?*, traducido de Stata a **Python y R**.
+- ✅ **Réplica exacta:** con el código original, las Tablas 3 a 7 del paper salen idénticas.
+- 🔧 **3 correcciones** al código original, opcionales y documentadas.
+- 🇵🇾 **Aplicación a Paraguay:** el mismo modelo de gravedad, estimado solo para
+  las exportaciones paraguayas, con **25 pruebas y diagnósticos**, cada uno
+  [justificado](docs/robustez.md).
 
-El paper original responde con datos de todo el mundo: una nueva medida en el
-mercado de destino reduce el crecimiento de las exportaciones hacia ese mercado
-en unos 0,28 puntos porcentuales, salvo que exportador e importador compartan un
-acuerdo con disciplinas sobre subsidios (el "escudo").
+## Resultados
+
+### 1. Los socios de Paraguay usan cada vez más la política industrial
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/medidas_por_anio_dark.png">
+  <img alt="Medidas de política industrial por año" src="docs/img/medidas_por_anio_light.png">
+</picture>
+
+Los 12 principales destinos de Paraguay aplicaron **11.104 medidas** entre 2012 y
+2022, y el **37,2 %** del valor exportado por Paraguay corresponde a productos
+alcanzados por al menos una de ellas.
+
+### 2. Sin disciplinas sobre subsidios, una medida frena las exportaciones
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/efecto_principal_dark.png">
+  <img alt="Coeficientes de la ecuación 6" src="docs/img/efecto_principal_light.png">
+</picture>
+
+> Cuando un socio **sin** disciplinas sobre subsidios aplica una medida, el
+> crecimiento de las exportaciones paraguayas del producto alcanzado cae
+> **6,77 puntos porcentuales** (p = 0,038), *ceteris paribus*.
+
+Con un socio del **Mercosur**, cuyo acuerdo cubre 4 de las 12 disciplinas sobre
+subsidios, el efecto neto ya no es negativo: el acuerdo funciona como **escudo**.
+Que el efecto sea positivo, en cambio, no resiste las pruebas con pocos socios
+tratados ([detalle](docs/robustez.md#e-los-p-valores-son-confiables-con-tan-pocos-socios-tratados)).
+
+| Ecuación (6) · efectos fijos de importador, año y sector | Crecimiento (pp) | Logaritmo |
+|---|---:|---:|
+| $\beta_1$: medida de un socio sin disciplinas | **−6,77**\*\* (3,22) | 0,133\* (0,071) |
+| $\beta_2$: × cobertura de disciplinas del acuerdo | **44,25**\*\*\* (10,56) | 1,069\*\*\* (0,238) |
+| Socio del Mercosur ($\beta_1 + \beta_2/3$) | 7,98\*\* (3,35) | 0,489\*\*\* (0,033) |
+| Observaciones · destinos | 4.354 · 104 | 6.553 · 133 |
+
+<sub>Errores estándar agrupados por importador entre paréntesis. \* p < 0,10; \*\* p < 0,05; \*\*\* p < 0,01. Todas las estimaciones, en [`resultados/`](resultados).</sub>
+
+### 3. ¿Resiste? Sí en tasa de crecimiento; en logaritmo, no
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/robustez_pvalores_dark.png">
+  <img alt="p-valores de las pruebas de robustez" src="docs/img/robustez_pvalores_light.png">
+</picture>
+
+En **tasa de crecimiento**, el efecto de la profundidad del acuerdo sigue siendo
+significativo al 5 % en casi todas las pruebas (al 10 % con errores agrupados por
+importador y año): con *bootstrap*, con un sorteo de socios
+placebo, sin Brasil y comparando el mismo producto en el tiempo. Además, pasa la
+prueba placebo (una medida del año siguiente no "afecta" las exportaciones de hoy).
+
+En **logaritmo**, el efecto desaparece al comparar el mismo producto y falla el
+placebo: refleja **qué** productos se exportan a cada socio, no el efecto de las
+medidas.
+
+👉 **[Por qué se eligió cada prueba y qué mostró](docs/robustez.md)**
+
+### 4. Lo mismo, visto con un modelo de equilibrio general (GTAP)
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/gtap_dark.png">
+  <img alt="Simulación GTAP" src="docs/img/gtap_light.png">
+</picture>
+
+Si Brasil subsidia 4 sectores, Paraguay le vende menos justo en esos sectores
+(−4,25 %) y más en los demás. Cuando el subsidio se recorta en un tercio, como
+haría una disciplina, la caída se reduce a −3,19 %.
+
+### 5. La réplica del paper
+
+Tabla 3, columna 5 del paper (todo el mundo, 8,5 millones de observaciones):
+
+| Versión | IP | IP_RTA_SUBS |
+|---|---:|---:|
+| Paper (Barattieri, Mattoo y Taglioni, 2024) | −0,773 (0,196) | 2,304 (0,575) |
+| Réplica en Stata | −0,773 (0,196) | 2,304 (0,575) |
+| Réplica en Python | −0,773 | 2,304 |
+| + corrección 1 (acuerdo de mayor cobertura) | −0,757 (0,195) | 2,092 (0,553) |
+| + correcciones 1 a 3 | −0,901 | 2,273 |
+
+---
 
 ## Datos
 
-| Base | Qué aporta | Fuente |
-|---|---|---|
-| **BACI** (CEPII), HS 2012 | Comercio bilateral por producto (6 dígitos) | [cepii.fr](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) |
-| **Global Trade Alert** | Medidas de política industrial por país, producto y año | [globaltradealert.org](https://www.globaltradealert.org/data_extraction) |
-| **Deep Trade Agreements 2.0** (Banco Mundial) | Cobertura de disciplinas sobre subsidios en cada acuerdo | [datatopics.worldbank.org/dta](https://datatopics.worldbank.org/dta/) |
+| Base | Qué aporta |
+|---|---|
+| [**BACI**](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) (CEPII), HS 2012 | Comercio bilateral por producto (6 dígitos) |
+| [**Global Trade Alert**](https://www.globaltradealert.org/data_extraction) | Medidas de política industrial por país, producto y año |
+| [**Deep Trade Agreements 2.0**](https://datatopics.worldbank.org/dta/) (Banco Mundial) | Cobertura de disciplinas sobre subsidios de cada acuerdo |
 
-Los datos **no** están en este repositorio (pesan varios GB y algunas licencias
-no permiten redistribuirlos libremente). Cómo conseguirlos: [`docs/datos.md`](docs/datos.md).
+Los datos **no** están en el repositorio: pesan varios GB y algunas licencias no
+permiten redistribuirlos. Para conseguirlos, ver [`docs/datos.md`](docs/datos.md).
 
 ## Estructura
 
 ```
-├── python/                  ← traducción a Python (pasos 0–6)
-│   ├── config.py            ← rutas y opciones
-│   ├── stata_utils.py       ← merge, encode, insheet, lincom… con la lógica de Stata
-│   ├── 0_master.py          ← corre todo en orden
-│   ├── 1_…6_*.py            ← un script por do-file original
-│   └── tests_make_synthetic_data.py ← datos falsos para probar que todo corre
-├── R/                       ← la misma traducción en R
-├── stata/                   ← do-files originales de los autores (referencia)
-├── docs/
-│   ├── datos.md             ← cómo descargar y ordenar los datos
-│   └── correcciones.md      ← las 3 correcciones al código original
-├── requirements.txt         ← paquetes de Python
-└── LICENSE                  ← BSD-3 (la del código original)
+├── python/          ← traducción a Python (pasos 0–6)
+├── R/               ← la misma traducción en R
+├── stata/           ← do-files originales de los autores (referencia)
+├── resultados/      ← resultados de la tesis en CSV + script de los gráficos
+└── docs/
+    ├── robustez.md      ← por qué cada prueba de robustez
+    ├── correcciones.md  ← las 3 correcciones al código original
+    ├── datos.md         ← cómo conseguir los datos
+    └── img/             ← gráficos del README
 ```
-
-## Los pasos
 
 | # | Qué hace | Stata (original) | Python | R |
 |---|---|---|---|---|
-| 1 | Acuerdos comerciales y su cobertura de subsidios (DTA) | `1-DataPrepare_PTA.do` | `1_data_prepare_pta.py` | `1-DataPrepare_PTA.R` |
+| 1 | Acuerdos comerciales y su cobertura de subsidios | `1-DataPrepare_PTA.do` | `1_data_prepare_pta.py` | `1-DataPrepare_PTA.R` |
 | 2 | Limpia las medidas de la Global Trade Alert | `2-DataPrepare_GTA_PT1.do` | `2_data_prepare_gta_pt1.py` | `2-DataPrepare_GTA_PT1.R` |
-| 3 | Separa la lista de productos afectados por cada medida | `3-Split Sectors-Products.R` | `3_split_sectors_products.py` | `3-Split Sectors-Products.R` |
-| 4 | Une comercio (BACI) + medidas + acuerdos → base de regresiones | `4-DataPrepare_GTA_PT2.do` | `4_data_prepare_gta_pt2.py` | `4-DataPrepare_GTA_PT2.R` |
-| 5 | Regresiones con efectos fijos (Tablas 3–8 del paper) | `5-Regressions.do` | `5_regressions.py` | `5-Regressions.R` |
+| 3 | Separa la lista de productos de cada medida | `3-Split Sectors-Products.R` | `3_split_sectors_products.py` | `3-Split Sectors-Products.R` |
+| 4 | Une comercio, medidas y acuerdos | `4-DataPrepare_GTA_PT2.do` | `4_data_prepare_gta_pt2.py` | `4-DataPrepare_GTA_PT2.R` |
+| 5 | Regresiones (Tablas 3–8 del paper) | `5-Regressions.do` | `5_regressions.py` | `5-Regressions.R` |
 | 6 | Figuras del paper | `6-Figures.do` | `6_figures.py` | `6-Figures.R` |
 
-Cada script de Python y R tiene, como comentario, la línea de Stata que traduce,
-para poder compararlos de a uno.
+Cada script de Python y R tiene como comentario la línea de Stata que traduce, para
+compararlos línea por línea. Los scripts de la estimación para Paraguay (y para
+cualquier otro país) se suman en la próxima actualización.
 
 ## Cómo correrlo
 
-### 1. Probar con datos sintéticos (2 minutos, sin descargar nada)
+**Prueba rápida con datos sintéticos** (2 minutos, sin descargar nada):
 
 ```bash
 pip install -r requirements.txt
@@ -78,86 +159,68 @@ python python/tests_make_synthetic_data.py .
 python python/0_master.py
 ```
 
-Crea datos falsos en `1_Data/` y corre los 6 pasos. Las tablas quedan en
-`5_Tables/` y las figuras en `4_Figures/`. Los números no significan nada:
-solo sirve para comprobar que todo funciona.
+**Con los datos reales:** descargarlos según [`docs/datos.md`](docs/datos.md) y
+correr `python python/0_master.py` (o `R/0-master.R` en RStudio). Hacen falta unos
+**16 GB de RAM** y varias horas de ejecución.
 
-### 2. Con los datos reales
+**Correcciones:** por defecto el código hace exactamente lo mismo que el original.
+Cada corrección se activa con una variable de entorno:
 
-1. Descarga los datos como explica [`docs/datos.md`](docs/datos.md) y ponlos en `1_Data/`.
-2. Corre `python python/0_master.py` (o `Rscript R/0-master.R`, o abre `R/0-master.R` en RStudio).
-
-⚠️ Con los datos reales la base tiene unos 15 millones de filas: se necesitan
-**16 GB de RAM** y varias horas (la Tabla 8 es la más lenta).
-
-### 3. Opciones (correcciones)
-
-Por defecto el código hace **exactamente lo mismo que el original**. Las
-correcciones se activan con variables de entorno, sin tocar el código:
-
-| Variable | Valor | Qué cambia | Detalle |
-|---|---|---|---|
-| `TESIS_VUELTA` | `2` | Si un par de países tiene varios acuerdos el mismo año, usa el de **mayor** cobertura de subsidios (el original se queda con el menor) | [corrección 1](docs/correcciones.md#1-acuerdos-superpuestos-se-queda-el-de-menor-cobertura) |
-| `TESIS_SIN_TRUNCAR` | `1` | No corta la lista de productos afectados en 2.045 caracteres | [corrección 2](docs/correcciones.md#2-la-lista-de-productos-se-corta-en-2045-caracteres) |
-| `TESIS_T_MENOS_1` | `1` | El crecimiento de las exportaciones compara siempre con el año anterior (t−1) | [corrección 3](docs/correcciones.md#3-el-crecimiento-no-siempre-es-contra-el-año-anterior) |
-| `TESIS_ROOT` | ruta | Carpeta donde están `1_Data/` y donde se guardan las salidas | — |
-
-Ejemplo (Linux/Mac):
+| Variable | Qué corrige |
+|---|---|
+| `TESIS_VUELTA=2` | Acuerdos superpuestos: usa el de **mayor** cobertura (el original, el de menor) |
+| `TESIS_SIN_TRUNCAR=1` | No corta la lista de productos en 2.045 caracteres (`insheet` de Stata) |
+| `TESIS_T_MENOS_1=1` | El crecimiento compara siempre con el año anterior |
 
 ```bash
 TESIS_VUELTA=2 TESIS_SIN_TRUNCAR=1 TESIS_T_MENOS_1=1 python python/0_master.py
 ```
 
-En Windows (PowerShell): `$env:TESIS_VUELTA=2` antes de correr el script.
-
+Para la explicación y las cifras de cada corrección, ver [`docs/correcciones.md`](docs/correcciones.md).
 En R, por ahora solo existe la corrección 1 (`vuelta <- 2` en `R/config.R`).
 
 ## Validación
 
-- **Stata**: con el código original, las Tablas 3 a 7 salen **idénticas** al paper
-  (por ejemplo, Tabla 3, columna 1: IP = −0,283 (0,126); N = 8.474.619; R² = 0,244).
-- **Python vs. Stata**: la base de regresiones de Python coincide con la de Stata en
-  sus 23 variables (15.054.549 filas; N, media, desvío, mínimo y máximo), y la
-  columna 5 de la Tabla 3 coincide al decimal.
-- **Python vs. R**: con datos sintéticos, las 17 salidas intermedias y finales son
-  idénticas.
-- **Limitación**: `R/5-Regressions.R` (paquete `fixest`) no se pudo ejecutar en el
-  entorno donde se tradujo; solo se verificó que los N coinciden. Los errores
-  estándar de `pyfixest`/`fixest` pueden diferir de `reghdfe` en el tercer decimal.
+- **Stata:** Tablas 3 a 7 idénticas al paper.
+- **Python vs. Stata:** la base de regresiones coincide en sus 23 variables
+  (15.054.549 filas) y la columna 5 de la Tabla 3 coincide al decimal.
+- **Python vs. R:** las 17 salidas son idénticas con datos sintéticos.
+- **Limitación:** `R/5-Regressions.R` no se pudo ejecutar en el entorno de
+  desarrollo. Los errores estándar de `pyfixest`/`fixest` pueden diferir de
+  `reghdfe` en el tercer decimal.
 
-## Créditos y cita
+## Créditos
 
 El método, los datos y el código original (carpeta `stata/`) son de:
 
 > Barattieri, A., Mattoo, A. y Taglioni, D. (2024). *Trade Effects of Industrial
 > Policies: Are Preferential Agreements a Shield?* Policy Research Working Paper
-> 10806. Banco Mundial.
+> 10806. Banco Mundial. ·
 > [Documento](https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099310406172411550) ·
-> [Paquete de reproducibilidad RR_EAP_2024_161](https://reproducibility.worldbank.org/catalog/176)
+> [Paquete de reproducibilidad](https://reproducibility.worldbank.org/catalog/176)
 
-Si usas este repositorio, cita el paper original. Este repositorio agrega la
-traducción a Python y R, las correcciones y la extensión por país.
-
-Licencia: BSD-3 (la misma del código original; ver [`LICENSE`](LICENSE)).
+Si usas este repositorio, cita el paper original. Licencia BSD-3, la misma del
+código original (ver [`LICENSE`](LICENSE)).
 
 ---
 
 ## 🇬🇧 English summary
 
-Python and R translation of the World Bank reproducibility package for
-Barattieri, Mattoo & Taglioni (2024), *Trade Effects of Industrial Policies: Are
-Preferential Agreements a Shield?* (PRWP 10806), developed for an undergraduate
-thesis in Economics on Paraguay's exports (2012–2022).
+**Do trading partners' industrial policies hurt a small exporter, and do trade
+agreements with subsidy disciplines shield it?** Undergraduate thesis in Economics
+(Universidad Nacional de Asunción, 2026) applying Barattieri, Mattoo & Taglioni
+(2024, World Bank PRWP 10806) to Paraguay, 2012–2022.
 
-- **Same results**: with the original code, Tables 3–7 match the paper exactly;
-  the Python pipeline reproduces Stata's regression dataset (23 variables, 15M rows)
-  and Table 3, column 5.
-- **Three optional fixes** to the original code (off by default; see
-  [`docs/correcciones.md`](docs/correcciones.md)): overlapping agreements keep the
-  *lowest* subsidy coverage; Stata's `insheet` truncates product lists at 2,045
-  bytes; export growth is computed against the previous *observation*, not
-  always t−1.
-- **Quick test**: `pip install -r requirements.txt`,
+- **Replication:** Python and R translation of the World Bank reproducibility
+  package. Tables 3–7 match the paper exactly; three optional fixes to the original
+  code are [documented](docs/correcciones.md).
+- **Main result:** an industrial-policy measure by a partner **without** subsidy
+  disciplines lowers the export growth of the affected Paraguayan product by
+  **6.77 percentage points** (p = 0.038). With Mercosur partners the net effect is
+  no longer negative, which is consistent with the "shield".
+- **Robustness:** 25 checks and diagnostics, each one [motivated](docs/robustez.md). The growth
+  specification survives placebo leads, product fixed effects, the wild cluster
+  bootstrap and randomization inference. The log-level specification does not,
+  since it mostly reflects product composition.
+- **Quick test:** `pip install -r requirements.txt`,
   `python python/tests_make_synthetic_data.py .`, `python python/0_master.py`.
-- Data (BACI, Global Trade Alert, Deep Trade Agreements 2.0) are not included;
-  see [`docs/datos.md`](docs/datos.md).
