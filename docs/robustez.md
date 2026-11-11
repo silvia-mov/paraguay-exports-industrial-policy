@@ -20,6 +20,12 @@ $$
 
 Las cifras completas están en [`resultados/`](../resultados) y el resumen, en el [README](../README.md#resultados).
 
+**Dónde está el código de cada bloque:** A y B en `python/8_robustez.py` y
+`python/14_tablas.py`; C en `7_pais.py`, `8_robustez.py` (PPML) y `9_robustez_2.py`
+(sectores); D en `7_pais.py` y `9_robustez_2.py`; E en `7_pais.py` (bootstrap),
+`8_robustez.py` (sorteo, cluster doble, sacar un socio) y `10_extra.py` (grupos
+efectivos); F en `11_subperiodos.py`, `12_tipo_subsidio.py` y `13_tipo_subsidio_inferencia.py`.
+
 ---
 
 ## A. Antes del modelo final: diagnóstico de las regresiones simples (ecuaciones 2 a 4)

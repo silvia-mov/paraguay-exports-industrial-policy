@@ -7,4 +7,6 @@ xlrd>=2.0          # leer .xls (GTA_NIPO.xls)
 numpy>=1.26
 pyfixest>=0.40,<0.70  # reghdfe + estout (0.70 cambió atributos internos)
 scipy>=1.11        # distribución t para lincom
+statsmodels>=0.14  # diagnósticos (Breusch-Pagan, Jarque-Bera, VIF) en los scripts 8 y 14
+wildboottest>=0.3  # wild cluster bootstrap (pyfixest .wildboottest)
 matplotlib>=3.8    # gráficos
