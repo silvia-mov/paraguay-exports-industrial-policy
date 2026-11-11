@@ -1,0 +1,10 @@
+# Dependencias Python (equivalentes a los paquetes ssc de Stata)
+pandas>=2.2        # manejo de datos (use, merge, collapse, reshape)
+pyarrow>=15        # lectura rápida de CSV/parquet (BACI)
+pyreadstat>=1.2    # leer/escribir .dta
+openpyxl>=3.1      # leer .xlsx
+xlrd>=2.0          # leer .xls (GTA_NIPO.xls)
+numpy>=1.26
+pyfixest>=0.40,<0.70  # reghdfe + estout (0.70 cambió atributos internos)
+scipy>=1.11        # distribución t para lincom
+matplotlib>=3.8    # gráficos
