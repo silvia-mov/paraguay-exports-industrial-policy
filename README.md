@@ -60,9 +60,9 @@ tratados ([detalle](docs/robustez.md#e-los-p-valores-son-confiables-con-tan-poco
 
 | Ecuación (6) · efectos fijos de importador, año y sector | Crecimiento (pp) | Logaritmo |
 |---|---:|---:|
-| $\beta_1$: medida de un socio sin disciplinas | **−6,77**\*\* (3,22) | 0,133\* (0,071) |
-| $\beta_2$: × cobertura de disciplinas del acuerdo | **44,25**\*\*\* (10,56) | 1,069\*\*\* (0,238) |
-| Socio del Mercosur ($\beta_1 + \beta_2/3$) | 7,98\*\* (3,35) | 0,489\*\*\* (0,033) |
+| β₁: medida de un socio sin disciplinas | **−6,77**\*\* (3,22) | 0,133\* (0,071) |
+| β₂: × cobertura de disciplinas del acuerdo | **44,25**\*\*\* (10,56) | 1,069\*\*\* (0,238) |
+| Socio del Mercosur (β₁ + β₂/3) | 7,98\*\* (3,35) | 0,489\*\*\* (0,033) |
 | Observaciones · destinos | 4.354 · 104 | 6.553 · 133 |
 
 <sub>Errores estándar agrupados por importador entre paréntesis. \* p < 0,10; \*\* p < 0,05; \*\*\* p < 0,01. Todas las estimaciones, en [`resultados/`](resultados).</sub>
