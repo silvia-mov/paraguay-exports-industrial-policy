@@ -1,0 +1,7 @@
+Especificación,Prueba,N,b_contemporáneo,p_contemporáneo,b_prueba,se_prueba,p_prueba
+Logaritmo,Placebo: adelanto de un año (t+1),5814,0.88811,1.43713e-05,0.539999,0.260126,0.0399517
+Logaritmo,Rezago 1 año(s),5457,1.39447,2.66135e-05,0.548131,0.257438,0.0351697
+Logaritmo,Rezago 2 año(s),5457,1.39447,2.66135e-05,0.733919,0.37154,0.0503977
+Tasa de crecimiento,Placebo: adelanto de un año (t+1),3857,42.6988,0.000121504,-4.7147,13.4979,0.727597
+Tasa de crecimiento,Rezago 1 año(s),3950,59.0159,3.1142e-05,8.62416,23.0899,0.709564
+Tasa de crecimiento,Rezago 2 año(s),3950,59.0159,3.1142e-05,-13.7502,21.2039,0.518165
