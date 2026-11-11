@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🇵🇾 Políticas industriales de los socios y exportaciones de Paraguay
+# Políticas industriales de los socios y exportaciones de Paraguay
 
 **¿Qué pasa con las exportaciones de un país pequeño cuando sus socios comerciales subsidian su propia producción?<br>¿Lo protege un acuerdo comercial con reglas sobre subsidios?**
 
@@ -12,7 +12,7 @@
 
 Trabajo Final de Grado en Economía · Universidad Nacional de Asunción · 2026
 
-[Resultados](#resultados) · [Robustez](docs/robustez.md) · [Cómo correrlo](#cómo-correrlo) · [Correcciones al código original](docs/correcciones.md) · [English](#-english-summary)
+[Resultados](#resultados) · [Robustez](docs/robustez.md) · [Cómo correrlo](#cómo-correrlo) · [Correcciones al código original](docs/correcciones.md) · [English](#english-summary)
 
 </div>
 
@@ -20,12 +20,12 @@ Trabajo Final de Grado en Economía · Universidad Nacional de Asunción · 2026
 
 ## En pocas palabras
 
-- 📚 **Base:** réplica del paper de **Barattieri, Mattoo y Taglioni (2024)** del
+- **Base:** réplica del paper de **Barattieri, Mattoo y Taglioni (2024)** del
   Banco Mundial, *Trade Effects of Industrial Policies: Are Preferential Agreements
   a Shield?*, traducido de Stata a **Python y R**.
-- ✅ **Réplica exacta:** con el código original, las Tablas 3 a 7 del paper salen idénticas.
-- 🔧 **3 correcciones** al código original, opcionales y documentadas.
-- 🇵🇾 **Aplicación a Paraguay:** el mismo modelo de gravedad, estimado solo para
+- **Réplica exacta:** con el código original, las Tablas 3 a 7 del paper salen idénticas.
+- **3 correcciones** al código original, opcionales y documentadas.
+- **Aplicación a Paraguay:** el mismo modelo de gravedad, estimado solo para
   las exportaciones paraguayas, con **25 pruebas y diagnósticos**, cada uno
   [justificado](docs/robustez.md).
 
@@ -84,7 +84,7 @@ En **logaritmo**, el efecto desaparece al comparar el mismo producto y falla el
 placebo: refleja **qué** productos se exportan a cada socio, no el efecto de las
 medidas.
 
-👉 **[Por qué se eligió cada prueba y qué mostró](docs/robustez.md)**
+**[Por qué se eligió cada prueba y qué mostró](docs/robustez.md)**
 
 ### 4. Lo mismo, visto con un modelo de equilibrio general (GTAP)
 
@@ -254,7 +254,7 @@ código original (ver [`LICENSE`](LICENSE)).
 
 ---
 
-## 🇬🇧 English summary
+## English summary
 
 **Do trading partners' industrial policies hurt a small exporter, and do trade
 agreements with subsidy disciplines shield it?** Undergraduate thesis in Economics
