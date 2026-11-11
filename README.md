@@ -125,9 +125,9 @@ permiten redistribuirlos. Para conseguirlos, ver [`docs/datos.md`](docs/datos.md
 ## Estructura
 
 ```
-├── python/          ← traducción a Python (pasos 0–6)
-├── R/               ← la misma traducción en R
-├── stata/           ← do-files originales de los autores (referencia)
+├── python/          ← traducción a Python (pasos 0–6) + estimación por país (7–14)
+├── R/               ← la misma traducción en R (pasos 0–6)
+├── stata/           ← do-files originales de los autores + confirmación por país
 ├── resultados/      ← resultados de la tesis en CSV + script de los gráficos
 └── docs/
     ├── robustez.md      ← por qué cada prueba de robustez
@@ -146,8 +146,22 @@ permiten redistribuirlos. Para conseguirlos, ver [`docs/datos.md`](docs/datos.md
 | 6 | Figuras del paper | `6-Figures.do` | `6_figures.py` | `6-Figures.R` |
 
 Cada script de Python y R tiene como comentario la línea de Stata que traduce, para
-compararlos línea por línea. Los scripts de la estimación para Paraguay (y para
-cualquier otro país) se suman en la próxima actualización.
+compararlos línea por línea.
+
+**Estimación para un país** (extensión de este repositorio; Python):
+
+| # | Qué hace | Script |
+|---|---|---|
+| 7 | Ecuaciones (2)–(4) y (6), efecto neto del acuerdo, bootstrap, placebo y rezagos | `7_pais.py` |
+| 8 | Sorteo de socios placebo, sacar un socio, PPML, diagnósticos, cluster doble | `8_robustez.py` |
+| 9 | Placebo con intervalo, efectos fijos de producto, sectores, estudio de eventos | `9_robustez_2.py` |
+| 10 | Número efectivo de grupos, intervalos de 3 años; guarda la muestra del país | `10_extra.py` |
+| 11 | Subperíodos 2012–2019 vs. 2020–2022 | `11_subperiodos.py` |
+| 12–13 | Un solo tipo de subsidio, con su inferencia | `12_tipo_subsidio.py`, `13_tipo_subsidio_inferencia.py` |
+| 14 | Junta todo en las tablas de [`resultados/`](resultados) | `14_tablas.py` |
+
+`stata/7_pais_robustez.do` y `7b_pais_boottest.do` repiten la ecuación (6) en Stata
+para confirmar los resultados. Qué duda responde cada prueba: [`docs/robustez.md`](docs/robustez.md).
 
 ## Cómo correrlo
 
@@ -179,12 +193,44 @@ TESIS_VUELTA=2 TESIS_SIN_TRUNCAR=1 TESIS_T_MENOS_1=1 python python/0_master.py
 Para la explicación y las cifras de cada corrección, ver [`docs/correcciones.md`](docs/correcciones.md).
 En R, por ahora solo existe la corrección 1 (`vuelta <- 2` en `R/config.R`).
 
+## Aplicarlo a otro país
+
+Después de correr los pasos 1–4, el país se elige con `TESIS_PAIS` (código ISO3):
+
+```bash
+export TESIS_VUELTA=2 TESIS_SIN_TRUNCAR=1 TESIS_T_MENOS_1=1   # las 3 correcciones
+export TESIS_PAIS=URY                                          # por defecto PRY
+for s in 7_pais 8_robustez 9_robustez_2 10_extra 14_tablas; do python python/$s.py; done
+```
+
+Las salidas quedan en `5_Tables/` con el código del país (`URY_resultados_v2.csv`,
+`URY_tablas_v2/`…). Para reproducir los números de la tesis: `TESIS_PAIS=PRY` con las
+3 correcciones activadas.
+
+Dos cosas a tener en cuenta:
+
+- **El acuerdo de referencia se detecta solo.** El efecto neto para un socio con
+  acuerdo es β₁ + d·β₂, donde *d* es la cobertura de disciplinas sobre subsidios.
+  Para Paraguay es el Mercosur (*d* = 1/3). Para otro país se usa la cobertura con
+  más observaciones tratadas; también se puede fijar con `TESIS_COB_REF=0.25`.
+- **Hacen falta socios tratados.** Si ningún socio con disciplinas sobre subsidios
+  aplica medidas sobre los productos del país, β₂ no se puede estimar: el script 7
+  estima solo β₁ y los demás avisan y se detienen. Con pocos socios tratados (como
+  Paraguay, con 3), conviene mirar el bootstrap y el sorteo, no solo los errores
+  agrupados ([por qué](docs/robustez.md#e-los-p-valores-son-confiables-con-tan-pocos-socios-tratados)).
+
 ## Validación
 
 - **Stata:** Tablas 3 a 7 idénticas al paper.
 - **Python vs. Stata:** la base de regresiones coincide en sus 23 variables
   (15.054.549 filas) y la columna 5 de la Tabla 3 coincide al decimal.
 - **Python vs. R:** las 17 salidas son idénticas con datos sintéticos.
+- **Paraguay, Python vs. Stata:** la ecuación (6) coincide al tercer decimal
+  (coeficientes, errores estándar y N).
+- **`14_tablas.py`:** a partir de la muestra de Paraguay, reproduce exactamente los
+  CSV de [`resultados/`](resultados).
+- **Scripts 7–14:** probados de punta a punta con datos sintéticos, con un país
+  con socios tratados y con uno sin socios tratados.
 - **Limitación:** `R/5-Regressions.R` no se pudo ejecutar en el entorno de
   desarrollo. Los errores estándar de `pyfixest`/`fixest` pueden diferir de
   `reghdfe` en el tercer decimal.
