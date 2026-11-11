@@ -1,0 +1,17 @@
+# Datos y salidas: no se versionan (ver docs/datos.md)
+1_Data/
+3_Log_files/
+4_Figures/
+5_Tables/
+*.dta
+*.parquet
+*.har
+
+# Python / R
+__pycache__/
+*.pyc
+.venv/
+venv/
+.Rhistory
+.RData
+.Rproj.user/
