@@ -11,6 +11,8 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
+plt.rcParams["axes.facecolor"] = "none"  # el panel toma el fondo de la figura
 import matplotlib.ticker
 import numpy as np
 import pandas as pd
@@ -19,6 +21,9 @@ AQUI = Path(__file__).resolve().parent
 IMG = AQUI.parent / "docs" / "img"
 IMG.mkdir(parents=True, exist_ok=True)
 
+# Fondo propio (no transparente): GitHub elige la versión clara u oscura según la computadora,
+# no según el tema de GitHub, y con fondo transparente las letras pueden quedar ilegibles.
+FONDO = {"light": "#ffffff", "dark": "#0d1117"}
 TEMAS = {
     "light": dict(texto="#0b0b0b", texto2="#52514e", grilla="#e4e3df", eje="#c3c2b7",
                   s1="#39b89a", s2="#ff5883", neutro="#fec9d7"),
@@ -48,7 +53,7 @@ def titulo(fig, t, texto, sub):
 
 
 def guardar(fig, nombre, modo):
-    fig.savefig(IMG / f"{nombre}_{modo}.png", dpi=200, transparent=True)
+    fig.savefig(IMG / f"{nombre}_{modo}.png", dpi=200, facecolor=FONDO[modo])
     plt.close(fig)
 
 
