@@ -40,7 +40,9 @@ Trabajo Final de Grado en Economía · Universidad Nacional de Asunción · 2026
 
 Los 12 principales destinos de Paraguay aplicaron **11.104 medidas** entre 2012 y
 2022, y el **37,2 %** del valor exportado por Paraguay corresponde a productos
-alcanzados por al menos una de ellas.
+alcanzados por al menos una de ellas (USD 36.632 de 98.509 millones exportados a 133
+destinos, en los productos y años en que el país que compra aplicó una medida sobre ese
+producto; dos tercios, ventas a Brasil y Argentina).
 
 ### 2. Sin disciplinas sobre subsidios, una medida frena las exportaciones
 
