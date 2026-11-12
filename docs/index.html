@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Políticas industriales de los socios y exportaciones de Paraguay</title>
+<meta name="description" content="¿Qué pasa con las exportaciones de Paraguay cuando sus socios comerciales subsidian su propia producción? ¿Lo protege un acuerdo comercial con reglas sobre subsidios? Resultados interactivos de una tesis de economía, con código abierto en Python, R y Stata.">
+<meta name="keywords" content="política industrial, subsidios, Paraguay, exportaciones, acuerdos comerciales, MERCOSUR, modelo de gravedad, Global Trade Alert, Banco Mundial, tesis de economía">
+<link rel="canonical" href="https://silvia-mov.github.io/paraguay-exports-industrial-policy/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_PY">
+<meta property="og:title" content="Políticas industriales de los socios y exportaciones de Paraguay">
+<meta property="og:description" content="Una medida de un socio sin reglas sobre subsidios frena 6,77 puntos el crecimiento de las exportaciones paraguayas. Con el MERCOSUR, el acuerdo funciona como escudo.">
+<meta property="og:url" content="https://silvia-mov.github.io/paraguay-exports-industrial-policy/">
+<meta property="og:image" content="https://silvia-mov.github.io/paraguay-exports-industrial-policy/img/efecto_principal_light.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Políticas industriales de los socios comerciales y exportaciones de Paraguay, 2012-2022",
+  "description": "Efecto de las políticas industriales de los socios comerciales sobre las exportaciones de Paraguay en el marco de los acuerdos comerciales preferenciales. Réplica en Python y R de Barattieri, Mattoo y Taglioni (2024) y aplicación a Paraguay.",
+  "inLanguage": "es",
+  "url": "https://silvia-mov.github.io/paraguay-exports-industrial-policy/",
+  "author": {"@type": "Person", "name": "silvia-mov", "url": "https://github.com/silvia-mov"},
+  "about": ["Política industrial", "Acuerdos comerciales", "MERCOSUR", "Paraguay", "Exportaciones"],
+  "isBasedOn": "https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099527506262426316",
+  "codeRepository": "https://github.com/silvia-mov/paraguay-exports-industrial-policy"
+}
+</script>
+<style>
+:root {
+  --bg: #fffafb; --panel: #ffffff; --text: #1d1a1c; --text2: #5c5459; --line: #f3dde4; --grid: #efe7ea;
+  --s1: #39b89a; --s1d: #1f7f68; --s2: #fec9d7; --s3: #ff5883; --s4: #79d3be; --muted: #d9cfd3;
+  --accent: #1f7f68; --link: #1f7f68; --btn: #39b89a; --btntext: #08261f; --hero1: #b9eee1; --hero2: #fec9d7; --code: #fdf0f4;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161314; --panel: #201b1d; --text: #f5eef1; --text2: #bfb3b8; --line: #3a2f33; --grid: #2c2427;
+    --s1: #39b89a; --s1d: #79d3be; --s2: #6b3a4a; --s3: #ff91ad; --s4: #b9eee1; --muted: #4a4044;
+    --accent: #79d3be; --link: #79d3be; --btn: #39b89a; --btntext: #08261f; --hero1: #123a31; --hero2: #3d1a26; --code: #2a2225;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161314; --panel: #201b1d; --text: #f5eef1; --text2: #bfb3b8; --line: #3a2f33; --grid: #2c2427;
+  --s1: #39b89a; --s1d: #79d3be; --s2: #6b3a4a; --s3: #ff91ad; --s4: #b9eee1; --muted: #4a4044;
+  --accent: #79d3be; --link: #79d3be; --btn: #39b89a; --btntext: #08261f; --hero1: #123a31; --hero2: #3d1a26; --code: #2a2225;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+header { padding: 56px 0 40px; background: linear-gradient(120deg, var(--hero1), var(--hero2)); }
+.eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; margin: 0 0 8px; }
+h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 0 0 16px; letter-spacing: -.01em; max-width: 820px; }
+.lead { font-size: 19px; color: var(--text2); max-width: 720px; margin: 0 0 24px; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { display: inline-block; padding: 9px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid var(--line); color: var(--text); background: var(--panel); cursor: pointer; font-family: inherit; }
+.btn.primary { background: var(--btn); border-color: var(--btn); color: var(--btntext); }
+.btn[aria-pressed="true"] { background: var(--s1); border-color: var(--s1); color: var(--btntext); }
+.chip { padding: 5px 12px; font-size: 14px; border-radius: 99px; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 14px 0; font-size: 15px; border-bottom: 1px solid var(--line); }
+nav.toc a { color: var(--text2); text-decoration: none; }
+section { padding: 44px 0 8px; }
+h2 { font-size: clamp(22px, 3.4vw, 28px); line-height: 1.25; margin: 0 0 10px; letter-spacing: -.005em; max-width: 860px; }
+h2::after { content: ""; display: block; width: 48px; height: 4px; border-radius: 2px; background: var(--s3); margin-top: 10px; }
+h3 { font-size: 18px; margin: 24px 0 8px; }
+p, li { max-width: 760px; }
+a { color: var(--link); }
+.sub { color: var(--text2); margin-top: 0; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 22px 0 0; }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--s3); border-radius: 10px; padding: 16px; }
+.kpi .v { font-size: 32px; font-weight: 750; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi .l { color: var(--text2); font-size: 14.5px; margin-top: 6px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 16px 0; }
+.note { font-size: 14px; color: var(--text2); }
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+svg text { fill: var(--text2); font-size: 12px; font-family: inherit; }
+.tip { position: absolute; pointer-events: none; background: var(--text); color: var(--bg); font-size: 13px; padding: 6px 9px; border-radius: 6px; opacity: 0; transition: opacity .12s; white-space: nowrap; z-index: 2; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.slider { width: 100%; accent-color: var(--s1); height: 28px; }
+.big-answer { font-size: 20px; line-height: 1.5; background: linear-gradient(120deg, var(--hero1), var(--hero2)); border-radius: 12px; padding: 16px 18px; margin: 12px 0; }
+.big-answer b { font-variant-numeric: tabular-nums; }
+.explica { background: var(--code); border-radius: 10px; padding: 14px 16px; margin-top: 12px; min-height: 92px; }
+.explica h4 { margin: 0 0 4px; font-size: 16px; }
+.explica p { margin: 4px 0; font-size: 15px; }
+.badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 2px 10px; border-radius: 99px; }
+.ok { background: var(--s1); color: var(--btntext); }
+.no { background: var(--s3); color: #fff; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: right; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--text2); font-weight: 600; }
+tr.igual td { background: color-mix(in srgb, var(--s1) 14%, transparent); }
+.tw { overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.steps li { counter-increment: s; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.steps li::before { content: counter(s); display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--s3); color: #fff; font-weight: 700; font-size: 14px; margin-right: 8px; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; background: var(--code); padding: 1px 5px; border-radius: 4px; }
+footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--line); font-size: 14px; color: var(--text2); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Trabajo Final de Grado en Economía · 2012–2022</p>
+    <h1>Cuando los socios subsidian, ¿qué le pasa a Paraguay?</h1>
+    <p class="lead">Los países que le compran a Paraguay usan cada vez más subsidios y otras ayudas para su propia producción. Esta tesis mide cuánto frena eso las exportaciones paraguayas y si un acuerdo comercial con reglas sobre subsidios funciona como <strong>escudo</strong>.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://github.com/silvia-mov/paraguay-exports-industrial-policy">Ver el código</a>
+      <a class="btn" href="#escudo">Probar el simulador</a>
+      <a class="btn" href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/robustez.md">Pruebas de robustez</a>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="v">11.104</div><div class="l">medidas de política industrial de los 12 principales socios, 2012–2022</div></div>
+      <div class="kpi"><div class="v">37,2 %</div><div class="l">del valor que exporta Paraguay corresponde a productos alcanzados por alguna medida</div></div>
+      <div class="kpi"><div class="v">−6,77</div><div class="l">puntos menos de crecimiento de las exportaciones del producto, si el socio no tiene reglas sobre subsidios</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contenido">
+    <a href="#medidas">Las medidas</a>
+    <a href="#exposicion">Quién está expuesto</a>
+    <a href="#escudo">El escudo</a>
+    <a href="#robustez">¿Resiste?</a>
+    <a href="#gtap">Simulación</a>
+    <a href="#replica">La réplica</a>
+    <a href="#metodo">Cómo se hizo</a>
+  </nav>
+
+  <section id="medidas">
+    <h2>En 2020, los socios de Paraguay casi triplicaron sus medidas de política industrial</h2>
+    <p class="sub">Medidas nuevas por año de los 12 principales destinos de las exportaciones paraguayas (Global Trade Alert). Tocá un país para verlo; pasá el mouse o el dedo por la línea para ver cada año.</p>
+    <div class="card">
+      <div class="controls" id="m-chips"></div>
+      <div class="chart" id="c-medidas"><div class="tip"></div></div>
+      <p class="note">Entre 2012 y 2019 el promedio fue de 755 medidas por año; en 2020, 2.033. Estados Unidos, Alemania e Italia aplican la mayoría.</p>
+    </div>
+  </section>
+
+  <section id="exposicion">
+    <h2>Siete de cada diez dólares que Paraguay le vende a Rusia están alcanzados por alguna medida</h2>
+    <p class="sub">Parte de lo exportado a cada socio que corresponde a productos con al menos una medida de ese socio, 2012–2022. Pasá el mouse por cada barra para ver el producto más afectado.</p>
+    <div class="card">
+      <div class="chart" id="c-expo"><div class="tip"></div></div>
+      <p class="note">En Brasil, lo más alcanzado es la energía eléctrica. Chile e Israel no aplicaron medidas sobre los productos que Paraguay les vende.</p>
+    </div>
+  </section>
+
+  <section id="escudo">
+    <h2>Un acuerdo con reglas sobre subsidios funciona como escudo</h2>
+    <p class="sub">Los acuerdos comerciales pueden incluir reglas que limitan los subsidios de cada país (en la tesis, "cobertura de disciplinas": de 0, ninguna, a 1, todas). Mové la barra para ver qué le pasa a Paraguay según qué tan profundo es el acuerdo con el socio que aplica la medida.</p>
+    <div class="card">
+      <div class="controls">
+        <span class="note">Medido como</span>
+        <button class="btn chip" id="esp-crec" aria-pressed="true">Tasa de crecimiento</button>
+        <button class="btn chip" id="esp-log" aria-pressed="false">Logaritmo</button>
+      </div>
+      <input class="slider" id="d" type="range" min="0" max="1" step="0.01" value="0" aria-label="Cobertura de disciplinas sobre subsidios del acuerdo">
+      <div class="controls" style="margin-top:-4px">
+        <button class="btn chip" data-d="0">Sin acuerdo</button>
+        <button class="btn chip" data-d="0.25">Israel (1/4)</button>
+        <button class="btn chip" data-d="0.333333333">MERCOSUR (1/3)</button>
+        <button class="btn chip" data-d="1">Acuerdo completo</button>
+      </div>
+      <div class="big-answer" id="e-texto" aria-live="polite"></div>
+      <div class="chart" id="c-escudo"><div class="tip"></div></div>
+      <p class="note">Línea: efecto estimado (β₁ + cobertura × β₂, ecuación 6). Franja: intervalo de confianza del 95 %, con errores agrupados por importador. Solo tres socios (Argentina, Brasil y Uruguay, por el MERCOSUR) tienen cobertura mayor a cero en los datos: los valores lejos de 1/3 son una extrapolación del modelo.</p>
+    </div>
+  </section>
+
+  <section id="robustez">
+    <h2>En tasa de crecimiento el resultado resiste; en logaritmo, no</h2>
+    <p class="sub">Cada punto es una prueba distinta del efecto de la profundidad del acuerdo (β₂). A la izquierda de la línea, el resultado es significativo. Tocá un punto para ver por qué se hizo esa prueba.</p>
+    <div class="card">
+      <div class="controls">
+        <button class="btn chip" id="r-crec" aria-pressed="true">Tasa de crecimiento</button>
+        <button class="btn chip" id="r-log" aria-pressed="false">Logaritmo</button>
+      </div>
+      <div class="chart" id="c-rob"><div class="tip"></div></div>
+      <div class="explica" id="r-explica" aria-live="polite"><p class="note">Tocá un punto del gráfico.</p></div>
+    </div>
+  </section>
+
+  <section id="gtap">
+    <h2>Si Brasil subsidia, Paraguay le vende menos justo en esos productos; recortar el subsidio amortigua la caída</h2>
+    <p class="sub">Simulación con un modelo de toda la economía mundial (GTAP): Brasil subsidia un 10 % cuatro sectores. Cada flecha va del escenario con el subsidio completo (S1) al subsidio recortado en un tercio (S3), como haría una regla del acuerdo.</p>
+    <div class="card">
+      <div class="chart" id="c-gtap"><div class="tip"></div></div>
+      <p class="note">Variación de lo que Paraguay le vende a Brasil, en %. Los sectores subsidiados caen (Brasil produce más de ellos) y los demás suben (Brasil reasigna recursos). En los cuatro subsidiados juntos: −4,25 % con el subsidio completo y −3,19 % recortado.</p>
+    </div>
+  </section>
+
+  <section id="replica">
+    <h2>El código del Banco Mundial, traducido a Python y R, da exactamente los mismos resultados</h2>
+    <p class="sub">La tesis parte del estudio de Barattieri, Mattoo y Taglioni (2024). Antes de aplicarlo a Paraguay, se replicó entero y se corrigieron tres detalles del código original.</p>
+    <div class="card tw">
+      <table>
+        <thead><tr><th>Tabla 3, columna 5 (todo el mundo, 8,5 millones de observaciones)</th><th>Medida (IP)</th><th>Medida × cobertura</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Estudio original</td><td>−0,773 (0,196)</td><td>2,304 (0,575)</td><td></td></tr>
+          <tr class="igual"><td>Réplica en Stata, Python y R</td><td>−0,773 (0,196)</td><td>2,304 (0,575)</td><td><span class="badge ok">idéntica</span></td></tr>
+          <tr><td>+ corrección 1: el acuerdo de mayor cobertura</td><td>−0,757 (0,195)</td><td>2,092 (0,553)</td><td></td></tr>
+          <tr><td>+ correcciones 1 a 3</td><td>−0,901</td><td>2,273</td><td></td></tr>
+        </tbody>
+      </table>
+      <p class="note"><a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/correcciones.md">Las tres correcciones</a>: cuando un par de países tiene dos acuerdos, el original se quedaba con el de menor cobertura; un límite de lectura de texto cortaba listas de productos; y la tasa de crecimiento no siempre comparaba con el año anterior.</p>
+    </div>
+  </section>
+
+  <section id="metodo">
+    <h2>Cómo se hizo, en cuatro pasos</h2>
+    <ol class="steps">
+      <li><b>Medidas.</b> Las políticas industriales de cada país, producto y año, de Global Trade Alert.</li>
+      <li><b>Comercio.</b> Las exportaciones de Paraguay por destino y producto (BACI, 6 dígitos).</li>
+      <li><b>Acuerdos.</b> Qué tanto limita cada acuerdo los subsidios (Deep Trade Agreements, Banco Mundial).</li>
+      <li><b>Modelo.</b> Un modelo de gravedad que compara lo exportado con y sin medida, con efectos fijos de destino, año y sector, más 25 pruebas de robustez.</li>
+    </ol>
+    <p>Todo el código está en <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy">GitHub</a>, en Python, R y Stata, con los resultados en CSV. Los datos no se incluyen porque pesan varios GB y algunas licencias no permiten redistribuirlos; <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/datos.md">acá</a> se explica cómo conseguirlos.</p>
+    <p class="note">Estudio base: Barattieri, A., Mattoo, A. y Taglioni, D. (2024). <em>Trade Effects of Industrial Policies: Are Preferential Agreements a Shield?</em> Policy Research Working Paper 10806, Banco Mundial.</p>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    Trabajo Final de Grado en Economía. Código abierto en <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy">GitHub</a>. Más proyectos en <a href="https://silvia-mov.github.io/">silvia-mov.github.io</a>.
+  </div>
+</footer>
+
+<script src="datos_pagina.js"></script>
+<script>
+// ------------------------------------------------------------------ datos (de resultados/*.csv)
+const MED = DATOS.medidas;
+const EXPO = DATOS.exposicion;
+// Ecuación 6: coeficientes, errores estándar y efecto Mercosur (para la covarianza)
+const ESP = DATOS.especificaciones;
+const ROB = DATOS.robustez;
+const GTAP = DATOS.gtap;
+
+// ------------------------------------------------------------------ utilidades
+const NS = "http://www.w3.org/2000/svg";
+const fmt = (x, d = 0) => x.toLocaleString("es-PY", {minimumFractionDigits: d, maximumFractionDigits: d});
+const signo = (x, d) => (x > 0 ? "+" : x < 0 ? "−" : "") + fmt(Math.abs(x), d);
+function el(tag, a, p) { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+function lienzo(id, h) {
+  const host = document.getElementById(id), W = Math.max(host.clientWidth, 300);
+  host.querySelectorAll("svg").forEach(s => s.remove());
+  const svg = el("svg", {viewBox: `0 0 ${W} ${h}`, height: h}); host.prepend(svg);
+  return {svg, W, h, host, tip: host.querySelector(".tip"), narrow: W < 560};
+}
+function tip(c, x, y, html) { c.tip.innerHTML = html; c.tip.style.opacity = 1;
+  const w = c.tip.offsetWidth; c.tip.style.left = Math.min(Math.max(x - w / 2, 0), c.W - w) + "px"; c.tip.style.top = (y - 40) + "px"; }
+const ocultar = c => c.tip.style.opacity = 0;
+function botones(ids, alCambiar) { ids.forEach(id => document.getElementById(id).addEventListener("click", () => {
+  ids.forEach(j => document.getElementById(j).setAttribute("aria-pressed", j === id)); alCambiar(id); })); }
+
+// ------------------------------------------------------------------ 1. Medidas por año
+let elegido = "Total";
+const chips = document.getElementById("m-chips");
+["Total", ...Object.keys(MED.paises).filter(p => p !== "Total")].forEach(p => {
+  const b = document.createElement("button"); b.className = "btn chip"; b.textContent = p; b.setAttribute("aria-pressed", p === elegido);
+  b.onclick = () => { elegido = p; chips.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x.textContent === p)); medidas(); };
+  chips.appendChild(b);
+});
+function medidas() {
+  const c = lienzo("c-medidas", 300), m = {l: 44, r: 16, t: 16, b: 28}, iw = c.W - m.l - m.r, ih = c.h - m.t - m.b;
+  const A = MED.anios, max = elegido === "Total" ? 2200 : Math.max(...MED.paises[elegido]) * 1.25 || 10;
+  const x = i => m.l + i / (A.length - 1) * iw, y = v => m.t + ih - v / max * ih;
+  const paso = max > 1000 ? 500 : max > 200 ? 100 : max > 40 ? 20 : 5;
+  for (let v = 0; v <= max; v += paso) { el("line", {x1: m.l, x2: c.W - m.r, y1: y(v), y2: y(v), stroke: "var(--grid)"}, c.svg);
+    el("text", {x: m.l - 6, y: y(v) + 4, "text-anchor": "end"}, c.svg).textContent = fmt(v); }
+  A.forEach((a, i) => { if (!c.narrow || i % 2 === 0) el("text", {x: x(i), y: c.h - 6, "text-anchor": "middle"}, c.svg).textContent = a; });
+  // 2020 destacado
+  el("rect", {x: x(8) - iw / A.length / 2, y: m.t, width: iw / (A.length - 1), height: ih, fill: "var(--s2)", opacity: .35}, c.svg);
+  if (elegido !== "Total") Object.entries(MED.paises).forEach(([p, s]) => { if (p === "Total" || p === elegido) return;
+    if (Math.max(...s) <= max) el("polyline", {points: s.map((v, i) => `${x(i)},${y(v)}`).join(" "), fill: "none", stroke: "var(--muted)", "stroke-width": 1.2}, c.svg); });
+  const s = MED.paises[elegido];
+  el("path", {d: `M${x(0)},${y(0)} ` + s.map((v, i) => `L${x(i)},${y(v)}`).join(" ") + ` L${x(A.length - 1)},${y(0)} Z`, fill: "var(--s1)", opacity: .15}, c.svg);
+  el("polyline", {points: s.map((v, i) => `${x(i)},${y(v)}`).join(" "), fill: "none", stroke: "var(--s1d)", "stroke-width": 3, "stroke-linejoin": "round"}, c.svg);
+  s.forEach((v, i) => el("circle", {cx: x(i), cy: y(v), r: i === 8 ? 6 : 3.5, fill: i === 8 ? "var(--s3)" : "var(--s1d)"}, c.svg));
+  el("text", {x: x(8), y: y(s[8]) - 12, "text-anchor": "middle", "font-weight": 700, style: "fill:var(--s3);font-size:13px"}, c.svg).textContent = fmt(s[8]);
+  const zona = el("rect", {x: m.l, y: m.t, width: iw, height: ih, fill: "transparent"}, c.svg);
+  const mover = ev => { const r = c.svg.getBoundingClientRect(), px = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
+    const i = Math.max(0, Math.min(A.length - 1, Math.round((px - m.l) / iw * (A.length - 1))));
+    tip(c, x(i), y(s[i]), `<b>${A[i]}</b> · ${elegido}: ${fmt(s[i])} medidas`); };
+  zona.addEventListener("mousemove", mover); zona.addEventListener("touchmove", mover, {passive: true}); zona.addEventListener("mouseleave", () => ocultar(c));
+}
+
+// ------------------------------------------------------------------ 2. Exposición por socio
+function exposicion() {
+  const fila = 30, c = lienzo("c-expo", EXPO.length * fila + 20), m = {l: c.narrow ? 96 : 120, r: 56};
+  const iw = c.W - m.l - m.r, x = v => m.l + v / 100 * iw;
+  [0, 25, 50, 75, 100].forEach(v => { el("line", {x1: x(v), x2: x(v), y1: 0, y2: EXPO.length * fila, stroke: "var(--grid)"}, c.svg);
+    el("text", {x: x(v), y: EXPO.length * fila + 16, "text-anchor": "middle"}, c.svg).textContent = v + " %"; });
+  EXPO.forEach((d, k) => { const yy = k * fila;
+    el("text", {x: m.l - 8, y: yy + 19, "text-anchor": "end", style: "fill:var(--text);font-size:13px"}, c.svg).textContent = d.p;
+    el("rect", {x: m.l, y: yy + 6, width: iw, height: fila - 12, fill: "var(--s2)", opacity: .45, rx: 3}, c.svg);
+    const b = el("rect", {x: m.l, y: yy + 6, width: Math.max(x(d.v) - m.l, 1), height: fila - 12, fill: d.v >= 40 ? "var(--s3)" : "var(--s1)", rx: 3}, c.svg);
+    el("text", {x: x(d.v) + 6, y: yy + 19, style: "fill:var(--text);font-weight:700;font-size:13px"}, c.svg).textContent = fmt(d.v, 1) + " %";
+    const t = d.prod ? `${d.p}: USD ${fmt(d.a)} M de ${fmt(d.t)} M alcanzados · sobre todo ${d.prod}` : `${d.p}: sin medidas sobre lo que compra a Paraguay`;
+    [b].forEach(e => { e.addEventListener("mousemove", () => tip(c, x(d.v) / 2 + m.l / 2, yy + 6, t)); e.addEventListener("mouseleave", () => ocultar(c));
+      e.addEventListener("click", () => tip(c, x(d.v) / 2 + m.l / 2, yy + 6, t)); });
+  });
+}
+
+// ------------------------------------------------------------------ 3. El escudo
+let esp = "crec";
+const slider = document.getElementById("d");
+let dActual = 0;  // valor exacto (la barra redondea a 0,01; el MERCOSUR es exactamente 1/3)
+function efecto(e, d) { const v = e.v1 + d * d * e.v2 + 2 * d * e.c; return [e.b1 + d * e.b2, Math.sqrt(Math.max(v, 0))]; }
+function escudo() {
+  const e = ESP[esp], d = dActual, [b, se] = efecto(e, d);
+  const lo = b - 1.96 * se, hi = b + 1.96 * se, unidad = e.unidad;
+  const nombre = d === 0 ? "un socio <b>sin</b> acuerdo con reglas sobre subsidios"
+    : Math.abs(d - 1 / 3) < .01 ? "un socio del <b>MERCOSUR</b> (cobertura 1/3)" : Math.abs(d - .25) < .01 ? "un socio como <b>Israel</b> (cobertura 1/4)"
+    : `un socio con un acuerdo de cobertura <b>${fmt(d * 100)} %</b>`;
+  let txt = `Si ${nombre} aplica una medida, ${e.que} ${b < 0 ? "<b style='color:var(--s3)'>cae " : "<b style='color:var(--s1d)'>sube "}${fmt(Math.abs(b), e.dec)} ${unidad}</b>.`;
+  const mercosur = Math.abs(d - 1 / 3) < .01;
+  txt += lo > 0 || hi < 0 ? ` <span class="note">El intervalo de confianza no incluye el cero.</span>`
+    : ` <span class="note">El intervalo incluye el cero: no se puede afirmar que el efecto sea distinto de cero.</span>`;
+  if (mercosur && b > 0) txt += ` <span class="note">Ojo: con solo tres socios del MERCOSUR en los datos, el bootstrap no confirma que las exportaciones suban (ver "¿Resiste?"). Lo que sí se sostiene es que el acuerdo protege: el efecto deja de ser negativo.</span>`;
+  document.getElementById("e-texto").innerHTML = txt;
+  const c = lienzo("c-escudo", 280), m = {l: 48, r: 16, t: 14, b: 32}, iw = c.W - m.l - m.r, ih = c.h - m.t - m.b;
+  const ds = Array.from({length: 101}, (_, i) => i / 100), pts = ds.map(x => efecto(e, x));
+  const ymin = Math.min(...pts.map(([b, s]) => b - 1.96 * s)), ymax = Math.max(...pts.map(([b, s]) => b + 1.96 * s));
+  const pad = (ymax - ymin) * .08, y0 = Math.min(ymin - pad, 0), y1 = Math.max(ymax + pad, 0);
+  const X = v => m.l + v * iw, Y = v => m.t + ih - (v - y0) / (y1 - y0) * ih;
+  const paso = e.paso;
+  for (let v = Math.ceil(y0 / paso) * paso; v <= y1; v += paso) { el("line", {x1: m.l, x2: c.W - m.r, y1: Y(v), y2: Y(v), stroke: "var(--grid)"}, c.svg);
+    el("text", {x: m.l - 6, y: Y(v) + 4, "text-anchor": "end"}, c.svg).textContent = signo(v, paso >= 1 ? 0 : 1); }
+  // franja de confianza
+  el("path", {d: "M" + pts.map(([b, s], i) => `${X(ds[i])},${Y(b + 1.96 * s)}`).join(" L") + " L" + pts.slice().reverse().map(([b, s], i) => `${X(ds[100 - i])},${Y(b - 1.96 * s)}`).join(" L") + " Z", fill: "var(--s1)", opacity: .18}, c.svg);
+  el("line", {x1: m.l, x2: c.W - m.r, y1: Y(0), y2: Y(0), stroke: "var(--text2)", "stroke-width": 1.2}, c.svg);
+  // zona negativa
+  el("polyline", {points: pts.map(([b], i) => `${X(ds[i])},${Y(b)}`).join(" "), fill: "none", stroke: "var(--s1d)", "stroke-width": 3}, c.svg);
+  const marcas = c.narrow ? [[0, "0"], [1 / 3, "1/3"], [1, "1"]] : [[0, "Sin acuerdo"], [.25, "Israel"], [1 / 3, "MERCOSUR"], [1, "Completo"]];
+  marcas.forEach(([v, t]) => {
+    el("line", {x1: X(v), x2: X(v), y1: m.t, y2: m.t + ih, stroke: "var(--muted)", "stroke-dasharray": "3 4"}, c.svg);
+    el("text", {x: X(v) + (v === 0 ? 2 : v === 1 ? -2 : 0), y: c.h - 10, "text-anchor": v === 0 ? "start" : v === 1 ? "end" : "middle", style: "font-size:11.5px"}, c.svg).textContent = t; });
+  if (e.b1 < 0 && e.b2 > 0) { const u = -e.b1 / e.b2;
+    el("circle", {cx: X(u), cy: Y(0), r: 4, fill: "var(--text)"}, c.svg);
+    const etiqueta = el("text", {x: X(u) + 10, y: Y(0) + 18, style: "fill:var(--text);font-size:12px;paint-order:stroke;stroke:var(--panel);stroke-width:4px"}, c.svg);
+    etiqueta.textContent = c.narrow ? `se anula en ${fmt(u * 100)} %` : `con cobertura del ${fmt(u * 100)} %, el efecto se anula`; }
+  el("line", {x1: X(d), x2: X(d), y1: Y(lo), y2: Y(hi), stroke: "var(--s3)", "stroke-width": 4, "stroke-linecap": "round"}, c.svg);
+  el("circle", {cx: X(d), cy: Y(b), r: 8, fill: "var(--s3)", stroke: "var(--panel)", "stroke-width": 2}, c.svg);
+}
+slider.addEventListener("input", () => { dActual = +slider.value; escudo(); });
+document.querySelectorAll("[data-d]").forEach(b => b.addEventListener("click", () => { dActual = +b.dataset.d; slider.value = dActual; escudo(); }));
+botones(["esp-crec", "esp-log"], id => { esp = id === "esp-crec" ? "crec" : "log"; escudo(); });
+
+// ------------------------------------------------------------------ 4. Robustez
+let rob = "Tasa de crecimiento";
+function robustez() {
+  const datos = ROB.filter(r => r.e === rob), fila = 38, c = lienzo("c-rob", datos.length * fila + 34);
+  const m = {l: c.narrow ? 150 : 270, r: 20}, iw = c.W - m.l - m.r;
+  const lx = p => Math.log10(Math.max(p, 1e-6)), X = p => m.l + (lx(p) - (-6)) / (0 - (-6)) * iw;
+  [[1e-6, "0,000001"], [1e-4, "0,0001"], [.01, "0,01"], [.1, "0,1"], [1, "1"]].forEach(([p, t]) => {
+    el("line", {x1: X(p), x2: X(p), y1: 0, y2: datos.length * fila, stroke: "var(--grid)"}, c.svg);
+    el("text", {x: X(p), y: datos.length * fila + 16, "text-anchor": "middle"}, c.svg).textContent = t; });
+  el("rect", {x: m.l, y: 0, width: X(.05) - m.l, height: datos.length * fila, fill: "var(--s1)", opacity: .08}, c.svg);
+  el("line", {x1: X(.05), x2: X(.05), y1: 0, y2: datos.length * fila, stroke: "var(--s3)", "stroke-dasharray": "4 3", "stroke-width": 1.5}, c.svg);
+  el("text", {x: X(.05) + 4, y: datos.length * fila + 30, style: "fill:var(--s3);font-size:12px"}, c.svg).textContent = "← significativo al 5 %";
+  datos.forEach((r, k) => { const yy = k * fila + fila / 2, ok = r.p < .05;
+    el("text", {x: m.l - 10, y: yy + 4, "text-anchor": "end", style: "fill:var(--text);font-size:13px"}, c.svg).textContent = c.narrow ? r.corto : r.t;
+    el("line", {x1: m.l, x2: X(r.p), y1: yy, y2: yy, stroke: "var(--muted)", "stroke-width": 1}, c.svg);
+    const pt = el("circle", {cx: X(r.p), cy: yy, r: 9, fill: ok ? "var(--s1)" : "var(--s3)", stroke: "var(--panel)", "stroke-width": 2, style: "cursor:pointer"}, c.svg);
+    const ver = () => { document.getElementById("r-explica").innerHTML = `<h4>${r.t} <span class="badge ${ok ? "ok" : "no"}">p = ${fmt(r.p, r.p < .001 ? 5 : 3)} · ${ok ? "resiste" : "no resiste"}</span></h4><p><b>La duda:</b> ${r.duda}</p><p><b>Qué salió:</b> ${r.res}</p>`; };
+    pt.addEventListener("click", ver); pt.addEventListener("mouseenter", ver);
+  });
+}
+botones(["r-crec", "r-log"], id => { rob = id === "r-crec" ? "Tasa de crecimiento" : "Logaritmo"; robustez(); });
+
+// ------------------------------------------------------------------ 5. GTAP
+function gtap() {
+  const fila = 36, c = lienzo("c-gtap", GTAP.length * fila + 40), m = {l: c.narrow ? 120 : 170, r: 50};
+  const vals = GTAP.flatMap(g => [g.s1, g.s3]), lo = Math.min(...vals, 0) - 4, hi = Math.max(...vals) + 4;
+  const iw = c.W - m.l - m.r, X = v => m.l + (v - lo) / (hi - lo) * iw;
+  for (let v = Math.ceil(lo / 10) * 10; v <= hi; v += 10) { el("line", {x1: X(v), x2: X(v), y1: 0, y2: GTAP.length * fila, stroke: v === 0 ? "var(--text2)" : "var(--grid)"}, c.svg);
+    el("text", {x: X(v), y: GTAP.length * fila + 16, "text-anchor": "middle"}, c.svg).textContent = signo(v, 0) + " %"; }
+  el("defs", {}, c.svg).innerHTML = `<marker id="flecha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--text2)"/></marker>`;
+  GTAP.forEach((g, k) => { const yy = k * fila + fila / 2;
+    el("text", {x: m.l - 10, y: yy + 4, "text-anchor": "end", style: `fill:var(--text);font-size:13px;font-weight:${g.sub ? 700 : 400}`}, c.svg).textContent = g.s + (g.sub ? " *" : "");
+    if (Math.abs(g.s1 - g.s3) > .3) el("line", {x1: X(g.s1), x2: X(g.s3), y1: yy, y2: yy, stroke: "var(--text2)", "stroke-width": 1.6, "marker-end": "url(#flecha)"}, c.svg);
+    el("circle", {cx: X(g.s1), cy: yy, r: 6, fill: g.sub ? "var(--s3)" : "var(--s1)"}, c.svg);
+    el("circle", {cx: X(g.s3), cy: yy, r: 6, fill: "var(--panel)", stroke: g.sub ? "var(--s3)" : "var(--s1)", "stroke-width": 2.5}, c.svg);
+    const z = el("rect", {x: 0, y: yy - fila / 2, width: c.W, height: fila, fill: "transparent"}, c.svg);
+    z.addEventListener("mousemove", () => tip(c, X(g.s3), yy - 6, `${g.s}: ${signo(g.s1, 1)} % con subsidio completo → ${signo(g.s3, 1)} % recortado`));
+    z.addEventListener("mouseleave", () => ocultar(c));
+  });
+  el("text", {x: m.l, y: GTAP.length * fila + 34, style: "font-size:12px"}, c.svg).textContent = "● subsidio completo (S1)   ○ subsidio recortado en un tercio (S3)   * sector subsidiado";
+}
+
+function todo() { medidas(); exposicion(); escudo(); robustez(); gtap(); }
+todo();
+let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(todo, 150); });
+</script>
+</body>
+</html>

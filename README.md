@@ -12,7 +12,7 @@
 
 Trabajo Final de Grado en Economía · Universidad Nacional de Asunción · 2026
 
-[Resultados](#resultados) · [Robustez](docs/robustez.md) · [Cómo correrlo](#cómo-correrlo) · [Correcciones al código original](docs/correcciones.md) · [English](#english-summary)
+[Página web interactiva](https://silvia-mov.github.io/paraguay-exports-industrial-policy/) · [Resultados](#resultados) · [Robustez](docs/robustez.md) · [Cómo correrlo](#cómo-correrlo) · [Correcciones al código original](docs/correcciones.md) · [English](#english-summary)
 
 </div>
 
@@ -132,11 +132,12 @@ permiten redistribuirlos. Para conseguirlos, ver [`docs/datos.md`](docs/datos.md
 ├── python/          ← traducción a Python (pasos 0–6) + estimación por país (7–14)
 ├── R/               ← la misma traducción en R (pasos 0–6)
 ├── stata/           ← do-files originales de los autores + confirmación por país
-├── resultados/      ← resultados de la tesis en CSV + script de los gráficos
+├── resultados/      ← resultados de la tesis en CSV + scripts de los gráficos y de la página web
 └── docs/
     ├── robustez.md      ← por qué cada prueba de robustez
     ├── correcciones.md  ← las 3 correcciones al código original
     ├── datos.md         ← cómo conseguir los datos
+    ├── index.html       ← página web (GitHub Pages), datos en datos_pagina.js
     └── img/             ← gráficos del README
 ```
 
