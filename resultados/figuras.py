@@ -70,9 +70,8 @@ for modo, t in TEMAS.items():
                     fontsize=9.5, color=t["texto"])
     estilo(ax, t, grilla="y")
     ax.set_xticks(med["Año"])
-    titulo(fig, t, "Medidas de política industrial de los 12 principales socios de Paraguay",
-           "Cantidad de medidas nuevas por año (Global Trade Alert, 2012–2022). "
-           "Total: 11.104; desde 2020, el salto.")
+    titulo(fig, t, "En 2020, los socios de Paraguay casi triplicaron sus medidas de política industrial",
+           "Medidas nuevas por año de los 12 principales destinos (Global Trade Alert, 2012–2022). Total: 11.104.")
     guardar(fig, "medidas_por_anio", modo)
 
 # ---------------------------------------------------------------- 2. Efecto principal
@@ -109,8 +108,8 @@ for modo, t in TEMAS.items():
         ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(coma))
         ax.set_title(nombre_panel, fontsize=11, color=t["texto"], loc="left", pad=8)
         estilo(ax, t)
-    titulo(fig, t, "Efecto de una medida del socio sobre las exportaciones de Paraguay",
-           "Coeficientes e intervalos de confianza del 95 % (errores agrupados por importador).")
+    titulo(fig, t, "Sin reglas sobre subsidios, una medida del socio frena las exportaciones; con el MERCOSUR, no",
+           "Efecto de una medida del socio sobre las exportaciones de Paraguay. Coeficientes e intervalos del 95 %.")
     fig.text(0.17, 0.83, "●  Socio sin disciplinas sobre subsidios (β₁)", color=t["s1"], fontsize=10.5)
     fig.text(0.58, 0.83, "●  Socio del Mercosur (β₁ + β₂/3)", color=t["s2"], fontsize=10.5)
     guardar(fig, "efecto_principal", modo)
@@ -149,8 +148,8 @@ for modo, t in TEMAS.items():
     ax.set_xlabel("p-valor de β₂ (escala logarítmica; a la izquierda de la línea = significativo)",
                   color=t["texto2"], fontsize=10)
     estilo(ax, t)
-    titulo(fig, t, "¿Resiste el efecto de la profundidad del acuerdo (β₂)?",
-           "p-valor del coeficiente de IP_RTA_SUBS en cada prueba de robustez.")
+    titulo(fig, t, "En tasa de crecimiento el resultado resiste; en logaritmo, no",
+           "p-valor del efecto de la profundidad del acuerdo (β₂, IP_RTA_SUBS) en cada prueba de robustez.")
     fig.text(0.33, 0.83, "●  Tasa de crecimiento", color=t["s1"], fontsize=10.5)
     fig.text(0.62, 0.83, "●  Logaritmo", color=t["s2"], fontsize=10.5)
     guardar(fig, "robustez_pvalores", modo)
@@ -174,8 +173,8 @@ for modo, t in TEMAS.items():
     ax.set_xlabel("Variación de las exportaciones de Paraguay a Brasil (%)", color=t["texto2"],
                   fontsize=10)
     estilo(ax, t)
-    titulo(fig, t, "Simulación GTAP: subsidio de Brasil a 4 sectores (*)",
-           "Los sectores subsidiados caen; recortar el subsidio en 1/3 amortigua la caída en ~25 %.")
+    titulo(fig, t, "Si Brasil subsidia, Paraguay le vende menos en esos sectores; recortarlo amortigua la caída",
+           "Simulación GTAP: subsidio del 10 % de Brasil a 4 sectores (*). Recortarlo en 1/3 reduce la caída ~25 %.")
     fig.text(0.27, 0.83, "■  S1: subsidio del 10 %", color=t["s1"], fontsize=10.5)
     fig.text(0.55, 0.83, "■  S3: subsidio recortado en 1/3", color=t["s2"], fontsize=10.5)
     guardar(fig, "gtap", modo)
