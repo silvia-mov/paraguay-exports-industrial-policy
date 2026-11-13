@@ -253,7 +253,9 @@ El método, los datos y el código original (carpeta `stata/`) son de:
 > [Paquete de reproducibilidad](https://reproducibility.worldbank.org/catalog/176)
 
 Si usas este repositorio, cita el paper original. Licencia BSD-3, la misma del
-código original (ver [`LICENSE`](LICENSE)).
+código original (ver [`LICENSE`](LICENSE)): el código Stata de `stata/` es de Barattieri,
+Mattoo y Taglioni (2024); la traducción a Python y R, las correcciones y la extensión por país
+(`python/` y `R/`) son de este repositorio.
 
 ---
 
