@@ -1,9 +1,7 @@
 BSD 3-Clause License
 
 Copyright (c) 2024, Alessandro Barattieri, Aaditya Mattoo, Daria Taglioni
-(original Stata code, folder stata/)
 Copyright (c) 2026, silvia-mov
-(Python and R translation, corrections and country extension, folders python/ and R/)
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
