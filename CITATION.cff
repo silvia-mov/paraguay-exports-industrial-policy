@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "Si usás este repositorio, citalo así y citá también el estudio original (Barattieri, Mattoo y Taglioni, 2024)."
+title: "Políticas industriales de los socios comerciales y exportaciones de Paraguay, 2012–2022"
+abstract: "Réplica en Python y R del paquete de Barattieri, Mattoo y Taglioni (2024, Banco Mundial) y aplicación a Paraguay: efecto de las políticas industriales de los socios sobre las exportaciones paraguayas y papel de las disciplinas sobre subsidios de los acuerdos comerciales. Trabajo Final de Grado en Economía, Universidad Nacional de Asunción."
+type: software
+authors:
+  - alias: silvia-mov
+repository-code: "https://github.com/silvia-mov/paraguay-exports-industrial-policy"
+url: "https://silvia-mov.github.io/paraguay-exports-industrial-policy/"
+license: BSD-3-Clause
+date-released: "2026-11-13"
+keywords:
+  - industrial policy
+  - trade agreements
+  - subsidies
+  - gravity model
+  - Paraguay
+  - MERCOSUR
+references:
+  - type: report
+    title: "Trade Effects of Industrial Policies: Are Preferential Agreements a Shield?"
+    authors:
+      - family-names: Barattieri
+        given-names: Alessandro
+      - family-names: Mattoo
+        given-names: Aaditya
+      - family-names: Taglioni
+        given-names: Daria
+    year: 2024
+    institution:
+      name: World Bank
+    collection-title: Policy Research Working Paper
+    number: "10806"
