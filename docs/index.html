@@ -119,6 +119,12 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
 }
 .contador[hidden] { display: none; }
 .contador { display: inline-block; margin: 12px 0 0; padding: 4px 12px; border-radius: 99px; background: var(--tag, #fec9d7); color: var(--tagtext, #7a2440); font-size: 13px; }
+.comentar { margin: 40px auto 0; max-width: 960px; padding: 0 16px; }
+.comentar .caja { border: 1.5px dashed #79d3be; border-radius: 12px; padding: 18px 20px; }
+.comentar h2 { margin: 0 0 8px; }
+.comentar p { margin: 0 0 14px; }
+.comentar a.boton { display: inline-block; padding: 9px 16px; border-radius: 8px; background: #39b89a; color: #08261f; font-weight: 600; text-decoration: none; }
+@media print { .comentar { display: none !important; } }
 </style>
 </head>
 <body>
@@ -243,6 +249,14 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <p class="note">Estudio base: Barattieri, A., Mattoo, A. y Taglioni, D. (2024). <em>Trade Effects of Industrial Policies: Are Preferential Agreements a Shield?</em> Policy Research Working Paper 10806, Banco Mundial.</p>
   </section>
 </div>
+
+<section class="comentar" id="comentarios">
+  <div class="caja">
+    <h2>¿Una duda, un error o una sugerencia?</h2>
+    <p>Dejá tu comentario de forma anónima: no se pide nombre ni correo, y solo lo lee la autora de la página.</p>
+    <a class="boton" href="https://forms.gle/Vis1NdaswVxbDw446" target="_blank" rel="noopener">Dejar un comentario</a>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
