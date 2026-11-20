@@ -29,6 +29,9 @@ PRUEBAS = {
         "Esta prueba los tiene en cuenta.", ""),
     "Sin Brasil": (
         "Sin Brasil", "Brasil pesa entre el 50 % y el 80 % de la información. ¿El resultado es del MERCOSUR o solo de Brasil?", ""),
+    "PPML con los mismos efectos fijos": (
+        "Poisson (niveles)", "En lugar de logaritmos o tasas, estima el valor exportado en dólares con un modelo de Poisson, "
+        "que es el método recomendado para comercio con valores muy distintos entre sí.", ""),
     "Placebo: adelanto de un año (t+1)": (
         "Placebo (año siguiente)", "Si la medida de un año aparece \"afectando\" las exportaciones del año ANTERIOR, el resultado no viene de la medida sino de diferencias previas entre productos. Acá lo esperado es NO ser significativo.", ""),
     "Efectos fijos de producto": (
@@ -54,6 +57,7 @@ RESULTADO = {
     ("Logaritmo", "Sorteo de socios placebo (1.999)"): "Raro bajo el azar.",
     ("Logaritmo", "Errores agrupados por importador y año"): "Se mantiene.",
     ("Logaritmo", "Sin Brasil"): "Se mantiene sin Brasil, pero con solo dos socios con reglas sobre subsidios (Argentina y Uruguay) este p-valor es poco confiable.",
+    ("Niveles (Poisson)", "PPML con los mismos efectos fijos"): "Significativo: también en niveles, cuanto más profundo el acuerdo, menor el daño.",
     ("Logaritmo", "Placebo: adelanto de un año (t+1)"): "Falla: la medida aparece \"afectando\" el año anterior. En logaritmo, el resultado refleja en parte diferencias previas entre productos; por eso la tasa de crecimiento es la medición más creíble.",
     ("Logaritmo", "Efectos fijos de producto"): "Desaparece: en logaritmo, el resultado reflejaba qué productos se exportan a cada socio, no el efecto de las medidas.",
     ("Logaritmo", "Efectos fijos de importador por producto"): "Desaparece, por la misma razón.",
@@ -89,15 +93,15 @@ def main():
 
     inf = pd.read_csv(AQUI / "paraguay_inferencia.csv")
     robustez = []
-    for _, r in inf[inf["Especificación"].isin(["Tasa de crecimiento", "Logaritmo"])].iterrows():
+    for _, r in inf[inf["Especificación"].isin(["Tasa de crecimiento", "Logaritmo", "Niveles (Poisson)"])].iterrows():
         corto, duda, _ = PRUEBAS[r["Prueba"]]
-        robustez.append({"e": r["Especificación"], "t": r["Prueba"], "corto": corto, "p": float(r["p"]),
+        robustez.append({"e": r["Especificación"], "t": r["Prueba"], "corto": corto, "p": float(r["p"]), "b": float(r["b_SUBS"]),
                          "duda": duda, "res": RESULTADO[(r["Especificación"], r["Prueba"])]})
     # Placebo: el efecto de la medida del año siguiente; lo esperado es que NO sea significativo (inv)
     pla = pd.read_csv(AQUI / "paraguay_placebo_rezagos.csv")
     for _, r in pla[pla["Prueba"].str.startswith("Placebo")].iterrows():
         corto, duda, _ = PRUEBAS[r["Prueba"]]
-        robustez.append({"e": r["Especificación"], "t": r["Prueba"], "corto": corto, "p": float(r["p_prueba"]),
+        robustez.append({"e": r["Especificación"], "t": r["Prueba"], "corto": corto, "p": float(r["p_prueba"]), "b": float(r["b_prueba"]),
                          "duda": duda, "res": RESULTADO[(r["Especificación"], r["Prueba"])], "inv": True})
 
     g = pd.read_csv(AQUI / "gtap_por_sector.csv")

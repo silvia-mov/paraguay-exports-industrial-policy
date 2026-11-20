@@ -302,6 +302,7 @@ const DATOS = {
    "t": "Errores agrupados por importador (base)",
    "corto": "Base",
    "p": 1.51221e-05,
+   "b": 1.06938,
    "duda": "Es la estimación principal: los errores se agrupan por país de destino, porque las exportaciones a un mismo país se parecen entre sí.",
    "res": "Significativo en la estimación base."
   },
@@ -310,6 +311,7 @@ const DATOS = {
    "t": "Bootstrap salvaje (9.999 repeticiones)",
    "corto": "Bootstrap salvaje",
    "p": 0.0711071,
+   "b": 1.06938,
    "duda": "Solo tres socios (los del MERCOSUR) tienen reglas sobre subsidios en los datos. Con tan pocos, los errores habituales suelen salir demasiado chicos; el bootstrap recalcula el p-valor sin depender de eso.",
    "res": "Pierde fuerza: significativo solo al 10 %."
   },
@@ -318,6 +320,7 @@ const DATOS = {
    "t": "Sorteo de socios placebo (1.999)",
    "corto": "Sorteo de socios",
    "p": 0.048,
+   "b": 1.06938,
    "duda": "Si se le asignara el acuerdo a tres socios al azar, ¿qué tan seguido saldría un resultado tan grande como el real? Si es raro, el resultado no es casualidad.",
    "res": "Raro bajo el azar."
   },
@@ -326,6 +329,7 @@ const DATOS = {
    "t": "Errores agrupados por importador y año",
    "corto": "Por importador y año",
    "p": 0.0189656,
+   "b": 1.06938,
    "duda": "Hay golpes que afectan a todos los destinos el mismo año, como la pandemia de 2020. Esta prueba los tiene en cuenta.",
    "res": "Se mantiene."
   },
@@ -334,6 +338,7 @@ const DATOS = {
    "t": "Sin Brasil",
    "corto": "Sin Brasil",
    "p": 9.42996e-07,
+   "b": 1.08378,
    "duda": "Brasil pesa entre el 50 % y el 80 % de la información. ¿El resultado es del MERCOSUR o solo de Brasil?",
    "res": "Se mantiene sin Brasil, pero con solo dos socios con reglas sobre subsidios (Argentina y Uruguay) este p-valor es poco confiable."
   },
@@ -342,6 +347,7 @@ const DATOS = {
    "t": "Efectos fijos de producto",
    "corto": "Mismo producto",
    "p": 0.406895,
+   "b": 0.192216,
    "duda": "Compara el mismo producto antes y después de la medida, en lugar de productos distintos entre sí.",
    "res": "Desaparece: en logaritmo, el resultado reflejaba qué productos se exportan a cada socio, no el efecto de las medidas."
   },
@@ -350,6 +356,7 @@ const DATOS = {
    "t": "Efectos fijos de importador por producto",
    "corto": "Mismo destino y producto",
    "p": 0.69614,
+   "b": 0.0595837,
    "duda": "Lo mismo, pero para cada combinación de destino y producto: es lo que hace el estudio original.",
    "res": "Desaparece, por la misma razón."
   },
@@ -358,6 +365,7 @@ const DATOS = {
    "t": "Bootstrap del efecto neto del Mercosur",
    "corto": "Efecto neto MERCOSUR",
    "p": 0.165917,
+   "b": 0.489138,
    "duda": "Ésta no mide el escudo sino algo más: si con un socio del MERCOSUR las exportaciones llegan a subir. Se prueba con bootstrap, por los pocos socios.",
    "res": "No resiste."
   },
@@ -366,6 +374,7 @@ const DATOS = {
    "t": "Errores agrupados por importador (base)",
    "corto": "Base",
    "p": 5.86295e-05,
+   "b": 44.2519,
    "duda": "Es la estimación principal: los errores se agrupan por país de destino, porque las exportaciones a un mismo país se parecen entre sí.",
    "res": "Significativo: con más reglas sobre subsidios, la medida perjudica menos."
   },
@@ -374,6 +383,7 @@ const DATOS = {
    "t": "Bootstrap salvaje (9.999 repeticiones)",
    "corto": "Bootstrap salvaje",
    "p": 0.0318032,
+   "b": 44.2519,
    "duda": "Solo tres socios (los del MERCOSUR) tienen reglas sobre subsidios en los datos. Con tan pocos, los errores habituales suelen salir demasiado chicos; el bootstrap recalcula el p-valor sin depender de eso.",
    "res": "Sigue significativo al 5 %."
   },
@@ -382,6 +392,7 @@ const DATOS = {
    "t": "Sorteo de socios placebo (1.999)",
    "corto": "Sorteo de socios",
    "p": 0.0455,
+   "b": 44.2519,
    "duda": "Si se le asignara el acuerdo a tres socios al azar, ¿qué tan seguido saldría un resultado tan grande como el real? Si es raro, el resultado no es casualidad.",
    "res": "El resultado real es raro bajo el azar: no es casualidad."
   },
@@ -390,6 +401,7 @@ const DATOS = {
    "t": "Errores agrupados por importador y año",
    "corto": "Por importador y año",
    "p": 0.0520275,
+   "b": 44.2519,
    "duda": "Hay golpes que afectan a todos los destinos el mismo año, como la pandemia de 2020. Esta prueba los tiene en cuenta.",
    "res": "Queda justo en el límite (5 %); significativo al 10 %."
   },
@@ -398,6 +410,7 @@ const DATOS = {
    "t": "Sin Brasil",
    "corto": "Sin Brasil",
    "p": 0.0122576,
+   "b": 29.4093,
    "duda": "Brasil pesa entre el 50 % y el 80 % de la información. ¿El resultado es del MERCOSUR o solo de Brasil?",
    "res": "Se mantiene sin Brasil, aunque más chico. Pero sin Brasil quedan solo dos socios con reglas sobre subsidios (Argentina y Uruguay, con pocas observaciones), así que este p-valor es poco confiable."
   },
@@ -406,6 +419,7 @@ const DATOS = {
    "t": "Efectos fijos de producto",
    "corto": "Mismo producto",
    "p": 1.52461e-05,
+   "b": 64.3115,
    "duda": "Compara el mismo producto antes y después de la medida, en lugar de productos distintos entre sí.",
    "res": "Se hace más fuerte: no es un efecto de qué productos se exportan."
   },
@@ -414,6 +428,7 @@ const DATOS = {
    "t": "Efectos fijos de importador por producto",
    "corto": "Mismo destino y producto",
    "p": 5.80851e-05,
+   "b": 55.9227,
    "duda": "Lo mismo, pero para cada combinación de destino y producto: es lo que hace el estudio original.",
    "res": "También se mantiene, como en el estudio original."
   },
@@ -422,14 +437,25 @@ const DATOS = {
    "t": "Bootstrap del efecto neto del Mercosur",
    "corto": "Efecto neto MERCOSUR",
    "p": 0.607761,
+   "b": 7.98239,
    "duda": "Ésta no mide el escudo sino algo más: si con un socio del MERCOSUR las exportaciones llegan a subir. Se prueba con bootstrap, por los pocos socios.",
    "res": "No resiste: el MERCOSUR protege (el efecto neto no es negativo), pero no se puede afirmar que haga subir las exportaciones."
+  },
+  {
+   "e": "Niveles (Poisson)",
+   "t": "PPML con los mismos efectos fijos",
+   "corto": "Poisson (niveles)",
+   "p": 0.0216495,
+   "b": 1.92557,
+   "duda": "En lugar de logaritmos o tasas, estima el valor exportado en dólares con un modelo de Poisson, que es el método recomendado para comercio con valores muy distintos entre sí.",
+   "res": "Significativo: también en niveles, cuanto más profundo el acuerdo, menor el daño."
   },
   {
    "e": "Logaritmo",
    "t": "Placebo: adelanto de un año (t+1)",
    "corto": "Placebo (año siguiente)",
    "p": 0.0399517,
+   "b": 0.539999,
    "duda": "Si la medida de un año aparece \"afectando\" las exportaciones del año ANTERIOR, el resultado no viene de la medida sino de diferencias previas entre productos. Acá lo esperado es NO ser significativo.",
    "res": "Falla: la medida aparece \"afectando\" el año anterior. En logaritmo, el resultado refleja en parte diferencias previas entre productos; por eso la tasa de crecimiento es la medición más creíble.",
    "inv": true
@@ -439,6 +465,7 @@ const DATOS = {
    "t": "Placebo: adelanto de un año (t+1)",
    "corto": "Placebo (año siguiente)",
    "p": 0.727597,
+   "b": -4.7147,
    "duda": "Si la medida de un año aparece \"afectando\" las exportaciones del año ANTERIOR, el resultado no viene de la medida sino de diferencias previas entre productos. Acá lo esperado es NO ser significativo.",
    "res": "Pasa: la medida no \"afecta\" el año anterior. El resultado no viene de diferencias previas.",
    "inv": true

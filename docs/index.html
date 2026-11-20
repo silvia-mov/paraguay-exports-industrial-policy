@@ -156,6 +156,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <a href="#escudo">El escudo</a>
     <a href="#robustez">¿Resiste?</a>
     <a href="#gtap">Simulación</a>
+    <a href="#periodos">Por período y tipo</a>
     <a href="#conclusion">Qué concluye</a>
     <a href="#replica">La réplica</a>
     <a href="#metodo">Cómo se hizo</a>
@@ -203,11 +204,12 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
 
   <section id="robustez">
     <h2>En tasa de crecimiento el resultado resiste; en logaritmo, no</h2>
-    <p class="sub">Cada punto es una prueba distinta del efecto de la profundidad del acuerdo (β₂). A la izquierda de la línea, el resultado es significativo. En el placebo es al revés: lo esperado es quedar a la derecha (no significativo). Tocá un punto para ver por qué se hizo esa prueba.</p>
+    <p class="sub">Cada punto es una prueba distinta del efecto de la profundidad del acuerdo (β₂). A la izquierda de la línea, el resultado es significativo; a la derecha de cada fila, el tamaño del coeficiente (en el placebo, el del año siguiente). En el placebo es al revés: lo esperado es quedar a la derecha (no significativo). Tocá un punto para ver por qué se hizo esa prueba.</p>
     <div class="card">
       <div class="controls">
         <button class="btn chip" id="r-crec" aria-pressed="true">Tasa de crecimiento</button>
         <button class="btn chip" id="r-log" aria-pressed="false">Logaritmo</button>
+        <button class="btn chip" id="r-ppml" aria-pressed="false">Niveles (Poisson)</button>
       </div>
       <div class="chart" id="c-rob"><div class="tip"></div></div>
       <div class="explica" id="r-explica" aria-live="polite"><p class="note">Tocá un punto del gráfico.</p></div>
@@ -220,7 +222,37 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <p class="sub">Simulación con un modelo de toda la economía mundial (GTAP): Brasil subsidia un 10 % cuatro sectores. Cada flecha va del escenario con el subsidio completo (S1) al subsidio recortado en un tercio (S3), como haría una regla del acuerdo.</p>
     <div class="card">
       <div class="chart" id="c-gtap"><div class="tip"></div></div>
-      <p class="note">Variación de lo que Paraguay le vende a Brasil, en %. Los sectores subsidiados caen (Brasil produce más de ellos) y los demás suben (Brasil reasigna recursos). En los cuatro subsidiados juntos (promedio ponderado por lo que Paraguay le vende a Brasil en cada sector): −4,25 % con el subsidio completo y −3,19 % recortado. En cereales el resultado es el mismo en los dos escenarios (−1,15 %); se verificó con la salida de RunGTAP: el recorte casi no cambia ese sector. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/gtap_por_sector.csv">CSV</a>.</p>
+      <p class="note">Variación de lo que Paraguay le vende a Brasil, en %. Los sectores subsidiados caen (Brasil produce más de ellos) y los demás suben (Brasil reasigna recursos). En los cuatro subsidiados juntos (promedio ponderado por lo que Paraguay le vende a Brasil en cada sector): −4,25 % con el subsidio completo y −3,19 % recortado. En cereales el resultado es el mismo en los dos escenarios (−1,15 %); se verificó con la salida de RunGTAP: el recorte casi no cambia ese sector. <b>En dólares</b> (a precios de 2014, el año de la base del modelo): los cuatro sectores subsidiados pasan de USD 777 millones a 744 millones (−33 millones) con el subsidio completo y a 752 millones (−25 millones) recortado; sumando todos los sectores, lo que Paraguay le vende a Brasil sube 138 millones y 83 millones, porque los demás sectores crecen. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/gtap_por_sector.csv">CSV</a>.</p>
+    </div>
+  </section>
+
+  <section id="periodos">
+    <h2>Antes y después de 2020, y por tipo de subsidio</h2>
+    <p class="sub">Dos pruebas más, en tasa de crecimiento. Las dos ayudan a entender el resultado, pero con pocos datos: hay que leerlas como indicio.</p>
+    <div class="card tw">
+      <h3>¿Cambió el efecto con la pandemia?</h3>
+      <table>
+        <thead><tr><th>Período</th><th>Profundidad del acuerdo (β₂)</th><th>Socio del MERCOSUR</th></tr></thead>
+        <tbody>
+          <tr><td>2012–2019 (143 envíos con medida y acuerdo)</td><td>+38 a +54 (p entre 0,001 y 0,017)</td><td>+6,7 a +10,9 puntos</td></tr>
+          <tr><td>2020–2022 (28 envíos con medida y acuerdo)</td><td>−15 a +13 (no significativo)</td><td>−1,8 a +2,2 puntos (no significativo)</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Rango de las cuatro variantes de la estimación en crecimiento. El efecto se identifica en 2012–2019. En 2020–2022 hay muy pocos datos y el coeficiente es impreciso, pero la diferencia entre los dos períodos no es significativa en ninguna variante (p entre 0,52 y 0,66): no hay evidencia de un quiebre en 2020; el período corto simplemente no alcanza para decir nada. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/paraguay_subperiodos.csv">CSV</a>.</p>
+    </div>
+    <div class="card tw">
+      <h3>¿Qué tipo de subsidio pesa más?</h3>
+      <p>Entre los socios con reglas sobre subsidios (Argentina, Brasil y Uruguay), el tipo más frecuente sobre lo que vende Paraguay es el <b>incentivo fiscal a la exportación</b>, sobre todo el REINTEGRA de Brasil (reintegro de impuestos a sus exportadores, restablecido en 2014 y modificado en 2017).</p>
+      <table>
+        <thead><tr><th>Incentivo fiscal a la exportación</th><th>Resultado</th></tr></thead>
+        <tbody>
+          <tr><td>Socio sin reglas sobre subsidios</td><td>−13 a −17 puntos de crecimiento</td></tr>
+          <tr><td>Socio del MERCOSUR</td><td>+18 a +21 puntos</td></tr>
+          <tr><td>Bootstrap salvaje de la profundidad</td><td>p entre 0,13 y 0,21: no resiste</td></tr>
+          <tr><td>Sin Brasil</td><td>desaparece</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Mismo patrón que el resultado general, pero más fuerte; sin embargo, no resiste el bootstrap ni la prueba sin Brasil, y fuera del MERCOSUR solo China e India usan ese instrumento sobre productos paraguayos. Sirve como ilustración del mecanismo (el REINTEGRA), no como resultado propio. Los demás tipos (préstamos estatales, financiamiento al comercio, donaciones) no dan resultados claros. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/paraguay_tipo_subsidio.csv">CSV</a> · <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/paraguay_tipo_subsidio_inferencia.csv">CSV de la inferencia</a>.</p>
     </div>
   </section>
 
@@ -431,7 +463,7 @@ botones(["esp-crec", "esp-log"], id => { esp = id === "esp-crec" ? "crec" : "log
 let rob = "Tasa de crecimiento";
 function robustez() {
   const datos = ROB.filter(r => r.e === rob), fila = 38, c = lienzo("c-rob", datos.length * fila + 34);
-  const m = {l: c.narrow ? 150 : 270, r: 20}, iw = c.W - m.l - m.r;
+  const m = {l: c.narrow ? 150 : 270, r: c.narrow ? 70 : 110}, iw = c.W - m.l - m.r;
   const lx = p => Math.log10(Math.max(p, 1e-6)), X = p => m.l + (lx(p) - (-6)) / (0 - (-6)) * iw;
   [[1e-6, "0,000001"], [1e-4, "0,0001"], [.01, "0,01"], [.1, "0,1"], [1, "1"]].forEach(([p, t]) => {
     el("line", {x1: X(p), x2: X(p), y1: 0, y2: datos.length * fila, stroke: "var(--grid)"}, c.svg);
@@ -443,11 +475,12 @@ function robustez() {
     el("text", {x: m.l - 10, y: yy + 4, "text-anchor": "end", style: "fill:var(--text);font-size:13px"}, c.svg).textContent = c.narrow ? r.corto : r.t;
     el("line", {x1: m.l, x2: X(r.p), y1: yy, y2: yy, stroke: "var(--muted)", "stroke-width": 1}, c.svg);
     const pt = el("circle", {cx: X(r.p), cy: yy, r: 9, fill: ok ? "var(--s1)" : "var(--s3)", stroke: "var(--panel)", "stroke-width": 2, style: "cursor:pointer"}, c.svg);
+    el("text", {x: c.W - 4, y: yy + 4, "text-anchor": "end", style: "fill:var(--text2);font-size:12px"}, c.svg).textContent = (c.narrow ? "" : (r.inv ? "adelanto " : r.t.includes("efecto neto") ? "neto " : "β₂ ")) + fmt(r.b, Math.abs(r.b) >= 10 ? 1 : 2);
     const ver = () => { document.getElementById("r-explica").innerHTML = `<h4>${r.t} <span class="badge ${ok ? "ok" : "no"}">p = ${fmt(r.p, r.p < .001 ? 5 : 3)} · ${ok ? "resiste" : "no resiste"}</span></h4><p><b>La duda:</b> ${r.duda}</p><p><b>Qué salió:</b> ${r.res}</p>`; };
     pt.addEventListener("click", ver); pt.addEventListener("mouseenter", ver);
   });
 }
-botones(["r-crec", "r-log"], id => { rob = id === "r-crec" ? "Tasa de crecimiento" : "Logaritmo"; robustez(); });
+botones(["r-crec", "r-log", "r-ppml"], id => { rob = {"r-crec": "Tasa de crecimiento", "r-log": "Logaritmo", "r-ppml": "Niveles (Poisson)"}[id]; robustez(); });
 
 // ------------------------------------------------------------------ 5. GTAP
 function gtap() {
