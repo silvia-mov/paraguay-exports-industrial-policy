@@ -143,7 +143,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <div class="kpis">
       <div class="kpi"><div class="v">11.104</div><div class="l">medidas de política industrial de los 12 principales socios, 2012–2022</div></div>
       <div class="kpi"><div class="v">37,2 %</div><div class="l">de lo que exportó Paraguay a sus 133 destinos estuvo alcanzado por una medida del país que compra</div></div>
-      <div class="kpi"><div class="v">−6,77</div><div class="l">puntos menos de crecimiento de las exportaciones del producto, si el socio no tiene reglas sobre subsidios</div></div>
+      <div class="kpi"><div class="v">−6,77</div><div class="l">puntos menos de crecimiento de las exportaciones del producto, si el socio no tiene reglas sobre subsidios (medido en tasa de crecimiento; en logaritmo, la medición principal de la tesis, la medida sola no reduce el valor exportado)</div></div>
     </div>
   </div>
 </header>
@@ -174,12 +174,12 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <p class="sub">Parte de lo exportado a cada socio que corresponde a productos con al menos una medida de ese socio, 2012–2022. Pasá el mouse por cada barra para ver el producto más afectado.</p>
     <div class="card">
       <div class="chart" id="c-expo"><div class="tip"></div></div>
-      <p class="note">En Brasil, lo más alcanzado es la energía eléctrica. Chile e Israel no aplicaron medidas sobre los productos que Paraguay les vende. Sumando todos los destinos, de USD 98.509 millones exportados en 2012–2022, USD 36.632 millones (37,2 %) fueron productos y años en que el país que compra aplicó una medida sobre ese producto; dos tercios (66,9 %), ventas a Brasil y Argentina.</p>
+      <p class="note">En Brasil, lo más alcanzado es la energía eléctrica, aunque la de Itaipú se vende según el tratado, así que una medida de Brasil casi no cambia esas ventas. Chile e Israel no aplicaron medidas sobre los productos que Paraguay les vende. Sumando todos los destinos, de USD 98.509 millones exportados en 2012–2022, USD 36.632 millones (37,2 %) fueron productos y años en que el país que compra aplicó una medida sobre ese producto; dos tercios (66,9 %), ventas a Brasil y Argentina.</p>
     </div>
   </section>
 
   <section id="escudo">
-    <h2>Un acuerdo con reglas sobre subsidios funciona como escudo</h2>
+    <h2>Un acuerdo con reglas sobre subsidios amortigua el golpe</h2>
     <p class="sub">Los acuerdos comerciales pueden incluir reglas que limitan los subsidios de cada país (en la tesis, "cobertura de disciplinas": de 0, ninguna, a 1, todas). Mové la barra para ver qué le pasa a Paraguay según qué tan profundo es el acuerdo con el socio que aplica la medida.</p>
     <div class="card">
       <div class="controls">
@@ -190,19 +190,18 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       <input class="slider" id="d" type="range" min="0" max="1" step="0.01" value="0" aria-label="Cobertura de disciplinas sobre subsidios del acuerdo">
       <div class="controls" style="margin-top:-4px">
         <button class="btn chip" data-d="0">Sin acuerdo</button>
-        <button class="btn chip" data-d="0.25">Israel (1/4)</button>
         <button class="btn chip" data-d="0.333333333">MERCOSUR (1/3)</button>
         <button class="btn chip" data-d="1">Acuerdo completo</button>
       </div>
       <div class="big-answer" id="e-texto" aria-live="polite"></div>
       <div class="chart" id="c-escudo"><div class="tip"></div></div>
-      <p class="note">Línea: efecto estimado (β₁ + cobertura × β₂, ecuación 6). Franja: intervalo de confianza del 95 %, con errores agrupados por importador. Solo tres socios (Argentina, Brasil y Uruguay, por el MERCOSUR) tienen a la vez un acuerdo con cobertura mayor a cero y medidas en los datos: los valores lejos de 1/3 son una extrapolación del modelo.</p>
+      <p class="note">Línea: efecto estimado (β₁ + cobertura × β₂, ecuación 6). Franja: intervalo de confianza del 95 %, con errores agrupados por importador. Solo tres socios (Argentina, Brasil y Uruguay, por el MERCOSUR) tienen a la vez un acuerdo con cobertura mayor a cero y medidas en los datos: los valores lejos de 1/3 son una extrapolación del modelo. Lo que resiste las pruebas es que, cuanto más profundo el acuerdo, menor el daño; que con el MERCOSUR las exportaciones lleguen a subir (efecto neto positivo) no resiste, y Brasil aporta entre el 50 % y el 80 % de la información.</p>
     </div>
   </section>
 
   <section id="robustez">
     <h2>En tasa de crecimiento el resultado resiste; en logaritmo, no</h2>
-    <p class="sub">Cada punto es una prueba distinta del efecto de la profundidad del acuerdo (β₂). A la izquierda de la línea, el resultado es significativo. Tocá un punto para ver por qué se hizo esa prueba.</p>
+    <p class="sub">Cada punto es una prueba distinta del efecto de la profundidad del acuerdo (β₂). A la izquierda de la línea, el resultado es significativo. En el placebo es al revés: lo esperado es quedar a la derecha (no significativo). Tocá un punto para ver por qué se hizo esa prueba.</p>
     <div class="card">
       <div class="controls">
         <button class="btn chip" id="r-crec" aria-pressed="true">Tasa de crecimiento</button>
@@ -232,7 +231,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
           <tr><td>Estudio original</td><td>−0,773 (0,196)</td><td>2,304 (0,575)</td><td></td></tr>
           <tr class="igual"><td>Réplica en Stata y en Python</td><td>−0,773 (0,196)</td><td>2,304 (0,575)</td><td><span class="badge ok">idéntica</span></td></tr>
           <tr><td>+ corrección 1: el acuerdo de mayor cobertura</td><td>−0,757 (0,195)</td><td>2,092 (0,553)</td><td></td></tr>
-          <tr><td>+ correcciones 1 a 3</td><td>−0,901</td><td>2,273</td><td></td></tr>
+          <tr><td>+ correcciones 1 a 3</td><td>−0,901 (error estándar no calculado)</td><td>2,273 (error estándar no calculado)</td><td></td></tr>
         </tbody>
       </table>
       <p class="note"><a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/correcciones.md">Las tres correcciones</a>: cuando un par de países tiene dos acuerdos, el original se quedaba con el de menor cobertura; un límite de lectura de texto cortaba listas de productos; y la tasa de crecimiento no siempre comparaba con el año anterior.</p>
@@ -353,7 +352,7 @@ function escudo() {
   const e = ESP[esp], d = dActual, [b, se] = efecto(e, d);
   const lo = b - 1.96 * se, hi = b + 1.96 * se, unidad = e.unidad;
   const nombre = d === 0 ? "un socio <b>sin</b> acuerdo con reglas sobre subsidios"
-    : Math.abs(d - 1 / 3) < .01 ? "un socio del <b>MERCOSUR</b> (cobertura 1/3)" : Math.abs(d - .25) < .01 ? "un socio como <b>Israel</b> (cobertura 1/4)"
+    : Math.abs(d - 1 / 3) < .01 ? "un socio del <b>MERCOSUR</b> (cobertura 1/3)" : Math.abs(d - .25) < .01 ? "un socio con cobertura 1/4, como Israel (extrapolación: Israel no tiene medidas sobre lo que le vende Paraguay)"
     : `un socio con un acuerdo de cobertura <b>${fmt(d * 100)} %</b>`;
   let txt = `Si ${nombre} aplica una medida, ${e.que} ${b < 0 ? "<b style='color:var(--s3)'>cae " : "<b style='color:var(--s1d)'>sube "}${fmt(Math.abs(b), e.dec)} ${unidad}</b>.`;
   const mercosur = Math.abs(d - 1 / 3) < .01;
@@ -374,7 +373,7 @@ function escudo() {
   el("line", {x1: m.l, x2: c.W - m.r, y1: Y(0), y2: Y(0), stroke: "var(--text2)", "stroke-width": 1.2}, c.svg);
   // zona negativa
   el("polyline", {points: pts.map(([b], i) => `${X(ds[i])},${Y(b)}`).join(" "), fill: "none", stroke: "var(--s1d)", "stroke-width": 3}, c.svg);
-  const marcas = c.narrow ? [[0, "0"], [1 / 3, "1/3"], [1, "1"]] : [[0, "Sin acuerdo"], [.25, "Israel"], [1 / 3, "MERCOSUR"], [1, "Completo"]];
+  const marcas = c.narrow ? [[0, "0"], [1 / 3, "1/3"], [1, "1"]] : [[0, "Sin acuerdo"], [1 / 3, "MERCOSUR"], [1, "Completo"]];
   marcas.forEach(([v, t]) => {
     el("line", {x1: X(v), x2: X(v), y1: m.t, y2: m.t + ih, stroke: "var(--muted)", "stroke-dasharray": "3 4"}, c.svg);
     el("text", {x: X(v) + (v === 0 ? 2 : v === 1 ? -2 : 0), y: c.h - 10, "text-anchor": v === 0 ? "start" : v === 1 ? "end" : "middle", style: "font-size:11.5px"}, c.svg).textContent = t; });
@@ -401,7 +400,7 @@ function robustez() {
   el("rect", {x: m.l, y: 0, width: X(.05) - m.l, height: datos.length * fila, fill: "var(--s1)", opacity: .08}, c.svg);
   el("line", {x1: X(.05), x2: X(.05), y1: 0, y2: datos.length * fila, stroke: "var(--s3)", "stroke-dasharray": "4 3", "stroke-width": 1.5}, c.svg);
   el("text", {x: X(.05) + 4, y: datos.length * fila + 30, style: "fill:var(--s3);font-size:12px"}, c.svg).textContent = "← significativo al 5 %";
-  datos.forEach((r, k) => { const yy = k * fila + fila / 2, ok = r.p < .05;
+  datos.forEach((r, k) => { const yy = k * fila + fila / 2, ok = r.inv ? r.p >= .05 : r.p < .05;
     el("text", {x: m.l - 10, y: yy + 4, "text-anchor": "end", style: "fill:var(--text);font-size:13px"}, c.svg).textContent = c.narrow ? r.corto : r.t;
     el("line", {x1: m.l, x2: X(r.p), y1: yy, y2: yy, stroke: "var(--muted)", "stroke-width": 1}, c.svg);
     const pt = el("circle", {cx: X(r.p), cy: yy, r: 9, fill: ok ? "var(--s1)" : "var(--s3)", stroke: "var(--panel)", "stroke-width": 2, style: "cursor:pointer"}, c.svg);

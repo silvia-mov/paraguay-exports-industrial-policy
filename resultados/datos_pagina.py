@@ -29,6 +29,8 @@ PRUEBAS = {
         "Esta prueba los tiene en cuenta.", ""),
     "Sin Brasil": (
         "Sin Brasil", "Brasil pesa entre el 50 % y el 80 % de la información. ¿El resultado es del MERCOSUR o solo de Brasil?", ""),
+    "Placebo: adelanto de un año (t+1)": (
+        "Placebo (año siguiente)", "Si la medida de un año aparece \"afectando\" las exportaciones del año ANTERIOR, el resultado no viene de la medida sino de diferencias previas entre productos. Acá lo esperado es NO ser significativo.", ""),
     "Efectos fijos de producto": (
         "Mismo producto", "Compara el mismo producto antes y después de la medida, en lugar de productos distintos entre sí.", ""),
     "Efectos fijos de importador por producto": (
@@ -42,7 +44,8 @@ RESULTADO = {
     ("Tasa de crecimiento", "Bootstrap salvaje (9.999 repeticiones)"): "Sigue significativo al 5 %.",
     ("Tasa de crecimiento", "Sorteo de socios placebo (1.999)"): "El resultado real es raro bajo el azar: no es casualidad.",
     ("Tasa de crecimiento", "Errores agrupados por importador y año"): "Queda justo en el límite (5 %); significativo al 10 %.",
-    ("Tasa de crecimiento", "Sin Brasil"): "Se mantiene sin Brasil, aunque más chico.",
+    ("Tasa de crecimiento", "Sin Brasil"): "Se mantiene sin Brasil, aunque más chico. Pero sin Brasil quedan solo dos socios con reglas sobre subsidios (Argentina y Uruguay, con pocas observaciones), así que este p-valor es poco confiable.",
+    ("Tasa de crecimiento", "Placebo: adelanto de un año (t+1)"): "Pasa: la medida no \"afecta\" el año anterior. El resultado no viene de diferencias previas.",
     ("Tasa de crecimiento", "Efectos fijos de producto"): "Se hace más fuerte: no es un efecto de qué productos se exportan.",
     ("Tasa de crecimiento", "Efectos fijos de importador por producto"): "También se mantiene, como en el estudio original.",
     ("Tasa de crecimiento", "Bootstrap del efecto neto del Mercosur"): "No resiste: el MERCOSUR protege (el efecto neto no es negativo), pero no se puede afirmar que haga subir las exportaciones.",
@@ -50,7 +53,8 @@ RESULTADO = {
     ("Logaritmo", "Bootstrap salvaje (9.999 repeticiones)"): "Pierde fuerza: significativo solo al 10 %.",
     ("Logaritmo", "Sorteo de socios placebo (1.999)"): "Raro bajo el azar.",
     ("Logaritmo", "Errores agrupados por importador y año"): "Se mantiene.",
-    ("Logaritmo", "Sin Brasil"): "Se mantiene sin Brasil.",
+    ("Logaritmo", "Sin Brasil"): "Se mantiene sin Brasil, pero con solo dos socios con reglas sobre subsidios (Argentina y Uruguay) este p-valor es poco confiable.",
+    ("Logaritmo", "Placebo: adelanto de un año (t+1)"): "Falla: la medida aparece \"afectando\" el año anterior. En logaritmo, el resultado refleja en parte diferencias previas entre productos; por eso la tasa de crecimiento es la medición más creíble.",
     ("Logaritmo", "Efectos fijos de producto"): "Desaparece: en logaritmo, el resultado reflejaba qué productos se exportan a cada socio, no el efecto de las medidas.",
     ("Logaritmo", "Efectos fijos de importador por producto"): "Desaparece, por la misma razón.",
     ("Logaritmo", "Bootstrap del efecto neto del Mercosur"): "No resiste.",
@@ -89,6 +93,12 @@ def main():
         corto, duda, _ = PRUEBAS[r["Prueba"]]
         robustez.append({"e": r["Especificación"], "t": r["Prueba"], "corto": corto, "p": float(r["p"]),
                          "duda": duda, "res": RESULTADO[(r["Especificación"], r["Prueba"])]})
+    # Placebo: el efecto de la medida del año siguiente; lo esperado es que NO sea significativo (inv)
+    pla = pd.read_csv(AQUI / "paraguay_placebo_rezagos.csv")
+    for _, r in pla[pla["Prueba"].str.startswith("Placebo")].iterrows():
+        corto, duda, _ = PRUEBAS[r["Prueba"]]
+        robustez.append({"e": r["Especificación"], "t": r["Prueba"], "corto": corto, "p": float(r["p_prueba"]),
+                         "duda": duda, "res": RESULTADO[(r["Especificación"], r["Prueba"])], "inv": True})
 
     g = pd.read_csv(AQUI / "gtap_por_sector.csv")
     s1 = g[g["Escenario"] == "S1"].set_index("Sector")

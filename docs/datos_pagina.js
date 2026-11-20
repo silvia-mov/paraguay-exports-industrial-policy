@@ -335,7 +335,7 @@ const DATOS = {
    "corto": "Sin Brasil",
    "p": 9.42996e-07,
    "duda": "Brasil pesa entre el 50 % y el 80 % de la información. ¿El resultado es del MERCOSUR o solo de Brasil?",
-   "res": "Se mantiene sin Brasil."
+   "res": "Se mantiene sin Brasil, pero con solo dos socios con reglas sobre subsidios (Argentina y Uruguay) este p-valor es poco confiable."
   },
   {
    "e": "Logaritmo",
@@ -399,7 +399,7 @@ const DATOS = {
    "corto": "Sin Brasil",
    "p": 0.0122576,
    "duda": "Brasil pesa entre el 50 % y el 80 % de la información. ¿El resultado es del MERCOSUR o solo de Brasil?",
-   "res": "Se mantiene sin Brasil, aunque más chico."
+   "res": "Se mantiene sin Brasil, aunque más chico. Pero sin Brasil quedan solo dos socios con reglas sobre subsidios (Argentina y Uruguay, con pocas observaciones), así que este p-valor es poco confiable."
   },
   {
    "e": "Tasa de crecimiento",
@@ -424,6 +424,24 @@ const DATOS = {
    "p": 0.607761,
    "duda": "Ésta no mide el escudo sino algo más: si con un socio del MERCOSUR las exportaciones llegan a subir. Se prueba con bootstrap, por los pocos socios.",
    "res": "No resiste: el MERCOSUR protege (el efecto neto no es negativo), pero no se puede afirmar que haga subir las exportaciones."
+  },
+  {
+   "e": "Logaritmo",
+   "t": "Placebo: adelanto de un año (t+1)",
+   "corto": "Placebo (año siguiente)",
+   "p": 0.0399517,
+   "duda": "Si la medida de un año aparece \"afectando\" las exportaciones del año ANTERIOR, el resultado no viene de la medida sino de diferencias previas entre productos. Acá lo esperado es NO ser significativo.",
+   "res": "Falla: la medida aparece \"afectando\" el año anterior. En logaritmo, el resultado refleja en parte diferencias previas entre productos; por eso la tasa de crecimiento es la medición más creíble.",
+   "inv": true
+  },
+  {
+   "e": "Tasa de crecimiento",
+   "t": "Placebo: adelanto de un año (t+1)",
+   "corto": "Placebo (año siguiente)",
+   "p": 0.727597,
+   "duda": "Si la medida de un año aparece \"afectando\" las exportaciones del año ANTERIOR, el resultado no viene de la medida sino de diferencias previas entre productos. Acá lo esperado es NO ser significativo.",
+   "res": "Pasa: la medida no \"afecta\" el año anterior. El resultado no viene de diferencias previas.",
+   "inv": true
   }
  ],
  "gtap": [
