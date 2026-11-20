@@ -135,6 +135,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <p class="eyebrow">Trabajo Final de Grado en Economía · 2012–2022</p>
     <h1>Cuando los socios subsidian, ¿qué le pasa a Paraguay?</h1>
     <p class="lead">Los países que le compran a Paraguay usan cada vez más subsidios y otras ayudas para su propia producción. Esta tesis mide cuánto frena eso las exportaciones paraguayas y si un acuerdo comercial con reglas sobre subsidios funciona como <strong>escudo</strong>.</p>
+    <p class="note" style="margin-top:-8px">Última actualización: 20 de noviembre de 2026.</p>
     <div class="btns">
       <a class="btn primary" href="https://github.com/silvia-mov/paraguay-exports-industrial-policy">Ver el código</a>
       <a class="btn" href="#escudo">Probar el simulador</a>
@@ -155,6 +156,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <a href="#escudo">El escudo</a>
     <a href="#robustez">¿Resiste?</a>
     <a href="#gtap">Simulación</a>
+    <a href="#conclusion">Qué concluye</a>
     <a href="#replica">La réplica</a>
     <a href="#metodo">Cómo se hizo</a>
   </nav>
@@ -165,7 +167,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <div class="card">
       <div class="controls" id="m-chips"></div>
       <div class="chart" id="c-medidas"><div class="tip"></div></div>
-      <p class="note">Entre 2012 y 2019 el promedio fue de 755 medidas por año; en 2020, 2.033. Estados Unidos, Alemania e Italia aplican la mayoría.</p>
+      <p class="note">Entre 2012 y 2019 el promedio fue de 755 medidas por año; en 2020, 2.033. Estados Unidos, Alemania e Italia aplican la mayoría. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/medidas_por_anio.csv">CSV</a>.</p>
     </div>
   </section>
 
@@ -174,7 +176,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <p class="sub">Parte de lo exportado a cada socio que corresponde a productos con al menos una medida de ese socio, 2012–2022. Pasá el mouse por cada barra para ver el producto más afectado.</p>
     <div class="card">
       <div class="chart" id="c-expo"><div class="tip"></div></div>
-      <p class="note">En Brasil, lo más alcanzado es la energía eléctrica, aunque la de Itaipú se vende según el tratado, así que una medida de Brasil casi no cambia esas ventas. Chile e Israel no aplicaron medidas sobre los productos que Paraguay les vende. Sumando todos los destinos, de USD 98.509 millones exportados en 2012–2022, USD 36.632 millones (37,2 %) fueron productos y años en que el país que compra aplicó una medida sobre ese producto; dos tercios (66,9 %), ventas a Brasil y Argentina.</p>
+      <p class="note">En Brasil, lo más alcanzado es la energía eléctrica, aunque la de Itaipú se vende según el tratado, así que una medida de Brasil casi no cambia esas ventas. Chile e Israel no aplicaron medidas sobre los productos que Paraguay les vende. Sumando todos los destinos, de USD 98.509 millones exportados en 2012–2022, USD 36.632 millones (37,2 %) fueron productos y años en que el país que compra aplicó una medida sobre ese producto; dos tercios (66,9 %), ventas a Brasil y Argentina. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/exportaciones_alcanzadas.csv">CSV</a>.</p>
     </div>
   </section>
 
@@ -195,7 +197,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       </div>
       <div class="big-answer" id="e-texto" aria-live="polite"></div>
       <div class="chart" id="c-escudo"><div class="tip"></div></div>
-      <p class="note">Línea: efecto estimado (β₁ + cobertura × β₂, ecuación 6). Franja: intervalo de confianza del 95 %, con errores agrupados por importador. Solo tres socios (Argentina, Brasil y Uruguay, por el MERCOSUR) tienen a la vez un acuerdo con cobertura mayor a cero y medidas en los datos: los valores lejos de 1/3 son una extrapolación del modelo. Lo que resiste las pruebas es que, cuanto más profundo el acuerdo, menor el daño; que con el MERCOSUR las exportaciones lleguen a subir (efecto neto positivo) no resiste, y Brasil aporta entre el 50 % y el 80 % de la información.</p>
+      <p class="note">Línea: efecto estimado (β₁ + cobertura × β₂, ecuación 6). Franja: intervalo de confianza del 95 %, con errores agrupados por importador. Solo tres socios (Argentina, Brasil y Uruguay, por el MERCOSUR) tienen a la vez un acuerdo con cobertura mayor a cero y medidas en los datos: los valores lejos de 1/3 son una extrapolación del modelo. Lo que resiste las pruebas es que, cuanto más profundo el acuerdo, menor el daño; que con el MERCOSUR las exportaciones lleguen a subir (efecto neto positivo) no resiste, y Brasil aporta entre el 50 % y el 80 % de la información. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/paraguay_ec6.csv">CSV</a>.</p>
     </div>
   </section>
 
@@ -209,6 +211,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       </div>
       <div class="chart" id="c-rob"><div class="tip"></div></div>
       <div class="explica" id="r-explica" aria-live="polite"><p class="note">Tocá un punto del gráfico.</p></div>
+      <p class="note">Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/paraguay_inferencia.csv">CSV de las pruebas</a> · <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/paraguay_placebo_rezagos.csv">CSV del placebo y los rezagos</a>.</p>
     </div>
   </section>
 
@@ -217,7 +220,38 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <p class="sub">Simulación con un modelo de toda la economía mundial (GTAP): Brasil subsidia un 10 % cuatro sectores. Cada flecha va del escenario con el subsidio completo (S1) al subsidio recortado en un tercio (S3), como haría una regla del acuerdo.</p>
     <div class="card">
       <div class="chart" id="c-gtap"><div class="tip"></div></div>
-      <p class="note">Variación de lo que Paraguay le vende a Brasil, en %. Los sectores subsidiados caen (Brasil produce más de ellos) y los demás suben (Brasil reasigna recursos). En los cuatro subsidiados juntos: −4,25 % con el subsidio completo y −3,19 % recortado.</p>
+      <p class="note">Variación de lo que Paraguay le vende a Brasil, en %. Los sectores subsidiados caen (Brasil produce más de ellos) y los demás suben (Brasil reasigna recursos). En los cuatro subsidiados juntos: −4,25 % con el subsidio completo y −3,19 % recortado. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/gtap_por_sector.csv">CSV</a>.</p>
+    </div>
+  </section>
+
+  <section id="conclusion">
+    <h2>Qué concluye la tesis y qué no</h2>
+    <div class="card">
+      <h3>Lo que concluye</h3>
+      <ul>
+        <li>Cuando el país que compra aplica una medida sin tener reglas sobre subsidios con Paraguay, el crecimiento de esas exportaciones cae (−6,77 puntos).</li>
+        <li>Cuanto más profundo es el acuerdo en reglas sobre subsidios, menor es el daño. Esto resiste el bootstrap, el sorteo de socios placebo y la prueba placebo.</li>
+        <li>Medido en niveles con un modelo de Poisson (PPML), la profundidad del acuerdo también ayuda: coeficiente 1,93 (p = 0,022).</li>
+        <li>La simulación de toda la economía (GTAP) apunta en el mismo sentido: el subsidio de Brasil desplaza a Paraguay justo en los productos subsidiados, y recortarlo en un tercio amortigua la caída.</li>
+      </ul>
+      <h3>Lo que no se puede afirmar</h3>
+      <ul>
+        <li>Que con el MERCOSUR las exportaciones lleguen a subir: ese efecto neto no resiste el bootstrap.</li>
+        <li>Que el resultado valga para cualquier acuerdo: solo tres socios (Argentina, Brasil y Uruguay) tienen a la vez reglas sobre subsidios y medidas en los datos, y Brasil aporta entre el 50 % y el 80 % de la información.</li>
+        <li>Que la medición en logaritmo (la principal del protocolo) muestre lo mismo: no pasa la prueba placebo, así que refleja en parte diferencias previas entre productos.</li>
+      </ul>
+    </div>
+    <h3>Por sector, en tasa de crecimiento</h3>
+    <div class="card tw">
+      <table>
+        <thead><tr><th>Sector</th><th>Socio sin reglas sobre subsidios</th><th>Socio del MERCOSUR</th></tr></thead>
+        <tbody>
+          <tr><td>Alimentos, bebidas y tabaco</td><td>−12,1 puntos (p = 0,013)</td><td>−7,6 puntos (p = 0,014)</td></tr>
+          <tr><td>Otras manufacturas</td><td>−0,9 puntos (no significativo)</td><td>+21,7 puntos (p &lt; 0,001)</td></tr>
+          <tr><td>Agricultura y otros primarios</td><td>+7,2 puntos (no significativo)</td><td>−2,8 puntos (no significativo)</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Efecto de una medida del país que compra sobre el crecimiento de las exportaciones paraguayas del producto, en puntos porcentuales. En alimentos el golpe es claro y el MERCOSUR no lo compensa; en manufacturas, con el MERCOSUR las exportaciones crecen más. Pocas observaciones con medida y acuerdo en cada sector (34 a 101): tomarlo como indicio. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/paraguay_por_sector.csv">CSV</a>.</p>
     </div>
   </section>
 
@@ -234,7 +268,7 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
           <tr><td>+ correcciones 1 a 3</td><td>−0,901 (error estándar no calculado)</td><td>2,273 (error estándar no calculado)</td><td></td></tr>
         </tbody>
       </table>
-      <p class="note"><a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/correcciones.md">Las tres correcciones</a>: cuando un par de países tiene dos acuerdos, el original se quedaba con el de menor cobertura; un límite de lectura de texto cortaba listas de productos; y la tasa de crecimiento no siempre comparaba con el año anterior.</p>
+      <p class="note"><a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/correcciones.md">Las tres correcciones</a>: cuando un par de países tiene dos acuerdos, el original se quedaba con el de menor cobertura; un límite de lectura de texto cortaba listas de productos; y la tasa de crecimiento no siempre comparaba con el año anterior. Datos: <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/resultados/replica_tabla3_col5.csv">CSV</a>.</p>
     </div>
   </section>
 
@@ -248,6 +282,8 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     </ol>
     <p>Todo el código está en <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy">GitHub</a>, en Python, R y Stata, con los resultados en CSV. Los datos no se incluyen porque pesan varios GB y algunas licencias no permiten redistribuirlos; <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/datos.md">acá</a> se explica cómo conseguirlos.</p>
     <p class="note">Estudio base: Barattieri, A., Mattoo, A. y Taglioni, D. (2024). <em>Trade Effects of Industrial Policies: Are Preferential Agreements a Shield?</em> Policy Research Working Paper 10806, Banco Mundial.</p>
+    <h3>Cómo citar</h3>
+    <p class="note">silvia-mov (2026). <em>Políticas industriales de los socios comerciales y exportaciones de Paraguay, 2012–2022</em>. Trabajo Final de Grado en Economía, Universidad Nacional de Asunción. https://silvia-mov.github.io/paraguay-exports-industrial-policy/ (consultado el día de la fecha). Citá también el estudio original.</p>
   </section>
 </div>
 
