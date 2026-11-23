@@ -95,7 +95,11 @@ th { color: var(--text2); font-weight: 600; }
 tr.igual td { background: color-mix(in srgb, var(--s1) 14%, transparent); }
 .tw { overflow-x: auto; }
 .steps { counter-reset: s; list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-.steps li { counter-increment: s; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.steps li { counter-increment: s; line-height: 1.5; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.muestra { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 14px 0 6px; }
+.muestra .m { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--s1); border-radius: 10px; padding: 10px 14px; }
+.muestra .v { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.muestra .l { font-size: 13px; color: var(--text2); }
 .steps li::before { content: counter(s); display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--s3); color: #fff; font-weight: 700; font-size: 14px; margin-right: 8px; }
 code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; background: var(--code); padding: 1px 5px; border-radius: 4px; }
 footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--line); font-size: 14px; color: var(--text2); }
@@ -311,8 +315,16 @@ footer { margin-top: 56px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       <li><b>Medidas.</b> Las políticas industriales de cada país, producto y año, de Global Trade Alert.</li>
       <li><b>Comercio.</b> Las exportaciones de Paraguay por destino y producto (BACI, 6 dígitos).</li>
       <li><b>Acuerdos.</b> Qué tanto limita cada acuerdo los subsidios (Deep Trade Agreements, Banco Mundial).</li>
-      <li><b>Modelo.</b> Un modelo de gravedad que compara lo exportado con y sin medida, con efectos fijos de destino, año y sector, más 25 pruebas y diagnósticos (18 en el gráfico "¿Resiste?"; las demás: Poisson en niveles, sin valores atípicos, por sector, rezagos, pruebas de Breusch-Pagan, Jarque-Bera y Wooldridge, entre otras, en el <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/robustez.md">detalle de las pruebas</a>). En tasa de crecimiento quedan 104 destinos y 4.354 observaciones, contra 133 y 6.553 en logaritmo, porque el crecimiento necesita el dato del año anterior: se pierde el primer año y los envíos que no se repiten.</li>
+      <li><b>Modelo.</b> Un modelo de gravedad que compara lo exportado con y sin medida, con efectos fijos de destino, año y sector, y 25 pruebas para ver si el resultado resiste.</li>
     </ol>
+    <div class="muestra">
+      <div class="m"><div class="v">133</div><div class="l">destinos en logaritmo</div></div>
+      <div class="m"><div class="v">6.553</div><div class="l">observaciones en logaritmo</div></div>
+      <div class="m"><div class="v">104</div><div class="l">destinos en crecimiento</div></div>
+      <div class="m"><div class="v">4.354</div><div class="l">observaciones en crecimiento</div></div>
+      <div class="m"><div class="v">25</div><div class="l">pruebas y diagnósticos</div></div>
+    </div>
+    <p class="note">En tasa de crecimiento hay menos datos porque se necesita el año anterior: se pierde el primer año y los envíos que no se repiten. De las 25 pruebas, 18 están en el gráfico "¿Resiste?"; las demás (Poisson en niveles, sin valores atípicos, por sector, rezagos, Breusch-Pagan, Jarque-Bera y Wooldridge, entre otras) están en el <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/robustez.md">detalle de las pruebas</a>.</p>
     <p>Todo el código está en <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy">GitHub</a>, en Python, R y Stata, con los resultados en CSV. Los datos no se incluyen porque pesan varios GB y algunas licencias no permiten redistribuirlos; <a href="https://github.com/silvia-mov/paraguay-exports-industrial-policy/blob/main/docs/datos.md">acá</a> se explica cómo conseguirlos.</p>
     <p class="note">Estudio base: Barattieri, A., Mattoo, A. y Taglioni, D. (2024). <em>Trade Effects of Industrial Policies: Are Preferential Agreements a Shield?</em> Policy Research Working Paper 10806, Banco Mundial.</p>
     <h3>Cómo citar</h3>
