@@ -19,7 +19,7 @@ from openpyxl.utils import get_column_letter
 TEXTO = re.compile(r"(?i)ncm|codigo|código|posicion|posición|producto|capitulo|capítulo|hs|nandina|sa6|cod_|_cod|partida|^id")
 FUENTE = Font(name="Calibri", size=10)
 NEGRITA = Font(name="Calibri", size=10, bold=True)
-FONDO = PatternFill("solid", fgColor="B9EEE1")
+FONDO = PatternFill("solid", fgColor="B7D0CC")
 
 
 def a_numero(col):
