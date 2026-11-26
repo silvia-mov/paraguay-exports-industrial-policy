@@ -68,7 +68,6 @@ section { padding: 44px 0 8px; }
 h2 { font-size: clamp(22px, 3.4vw, 28px); line-height: 1.25; margin: 0 0 10px; letter-spacing: -.005em; max-width: 860px; }
 h2::after { content: ""; display: block; width: 48px; height: 4px; border-radius: 2px; background: var(--s3); margin-top: 10px; }
 h3 { font-size: 18px; margin: 24px 0 8px; }
-p, li { max-width: 760px; }
 a { color: var(--link); }
 .sub { color: var(--text2); margin-top: 0; }
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 22px 0 0; }
@@ -139,10 +138,8 @@ body, button, input, select, textarea { font-family: "Source Sans 3", system-ui,
 h1, h2, h3, .kpi .v, .disp .v, .muestra .v { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-optical-sizing: auto; font-weight: 600; letter-spacing: 0; }
 /* Párrafos justificados, con separación en sílabas */
 p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
-/* Revisión de diseño: contraste de botones, tamaño de toque, ancho de lectura y letra mínima */
+/* Revisión de diseño: contraste de botones, tamaño de toque y letra mínima */
 .boton { background: #679891 !important; }
-p { max-width: 72ch; }
-.card p, .note, figure p, .graf p, td p, li p, .disp p, .kpi p { max-width: none; }
 .todo, .flujo p { margin-left: auto; margin-right: auto; }
 small { font-size: max(12px, .75em); }
 @media (max-width: 700px) {
