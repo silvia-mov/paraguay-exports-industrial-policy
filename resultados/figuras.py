@@ -109,7 +109,7 @@ for modo, t in TEMAS.items():
         ax.set_title(nombre_panel, fontsize=11, color=t["texto"], loc="left", pad=8)
         estilo(ax, t)
     titulo(fig, t, "Sin reglas sobre subsidios, una medida del socio frena las exportaciones; con el MERCOSUR, no",
-           "Efecto de una medida del socio sobre las exportaciones de Paraguay. Coeficientes e intervalos del 95 %.")
+           "Efecto de una medida del socio sobre las exportaciones de Paraguay. Coeficientes e intervalos del 95%.")
     fig.text(0.17, 0.83, "●  Socio sin disciplinas sobre subsidios (β₁)", color=t["s1"], fontsize=10.5)
     fig.text(0.58, 0.83, "●  Socio del Mercosur (β₁ + β₂/3)", color=t["s2"], fontsize=10.5)
     guardar(fig, "efecto_principal", modo)
@@ -134,7 +134,7 @@ for modo, t in TEMAS.items():
             y = len(pruebas) - 1 - i
             p = max(sub.loc[clave, "p"], 1e-6)
             ax.plot(p, y + dy, "o", color=c, markersize=8, markeredgecolor="none")
-    for umbral, txt, ha in ((0.05, "5 % ", "right"), (0.10, " 10 %", "left")):
+    for umbral, txt, ha in ((0.05, "5% ", "right"), (0.10, " 10%", "left")):
         ax.axvline(umbral, color=t["texto2"], linewidth=1, linestyle=(0, (3, 3)))
         ax.text(umbral, len(pruebas) - 0.45, txt, ha=ha, va="bottom", fontsize=9,
                 color=t["texto2"])
@@ -174,8 +174,8 @@ for modo, t in TEMAS.items():
                   fontsize=10)
     estilo(ax, t)
     titulo(fig, t, "Si Brasil subsidia, Paraguay le vende menos en esos sectores; recortarlo amortigua la caída",
-           "Simulación GTAP: subsidio del 10 % de Brasil a 4 sectores (*). Recortarlo en 1/3 reduce la caída ~25 %.")
-    fig.text(0.27, 0.83, "■  S1: subsidio del 10 %", color=t["s1"], fontsize=10.5)
+           "Simulación GTAP: subsidio del 10% de Brasil a 4 sectores (*). Recortarlo en 1/3 reduce la caída ~25%.")
+    fig.text(0.27, 0.83, "■  S1: subsidio del 10%", color=t["s1"], fontsize=10.5)
     fig.text(0.55, 0.83, "■  S3: subsidio recortado en 1/3", color=t["s2"], fontsize=10.5)
     guardar(fig, "gtap", modo)
 

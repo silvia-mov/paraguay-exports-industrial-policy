@@ -13,7 +13,7 @@ Base: ec. (6) (ver 7_pais.py y 8_robustez.py).
 
 1. Placebo con intervalo de confianza (Eggers, Tuñón y Dafoe 2024): el
    adelanto F1 (la IP del año siguiente) no debería tener efecto. Se informa
-   su IC 95 % y si ese IC excluye un efecto del tamaño del estimado
+   su IC 95% y si ese IC excluye un efecto del tamaño del estimado
    principal (prueba de equivalencia TOST de Hartman e Hidalgo 2018).
 2. Efectos fijos de producto: importador + año + producto HS 6 dígitos, e
    importador × producto + año (como el paper).
@@ -124,7 +124,7 @@ din_specs = {
 }
 
 # ---- 1. Placebo F1 con intervalo de confianza y equivalencia ------------------
-print("\n== 1. Placebo F1 con IC 95 % y prueba de equivalencia (TOST)")
+print("\n== 1. Placebo F1 con IC 95% y prueba de equivalencia (TOST)")
 for nombre, (y, d) in din_specs.items():
     d = d[d["year"] < 2022]  # 2022 no tiene t+1
     fit = pf.feols(f"{y} ~ IP + IP_RTA_SUBS + F1_IP + F1_IP_RTA_SUBS | {FE}", data=d,
@@ -206,7 +206,7 @@ for nombre, (y, d) in din_specs.items():
                   "acum_IC": f"{acum['ci_low']:.2f} a {acum['ci_high']:.2f}"})
     print(f"   adelantos F2 y F1 conjuntos = 0: p={float(pre['pvalue']):.3f};"
           f"  acumulado t a t+2 = {acum['estimate']:.2f} (p={acum['p']:.3f})")
-    # Gráfico: coeficiente de profundidad por año relativo, con IC 95 %
+    # Gráfico: coeficiente de profundidad por año relativo, con IC 95%
     q = stats.t.ppf(0.975, fit._df_t)
     k_, b_, se_ = zip(*[(p[0], p[1], p[2]) for p in puntos])
     fig, ax = plt.subplots(figsize=(6, 3.6))

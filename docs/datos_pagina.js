@@ -313,7 +313,7 @@ const DATOS = {
    "p": 0.0711071,
    "b": 1.06938,
    "duda": "Solo tres socios (los del MERCOSUR) tienen reglas sobre subsidios en los datos. Con tan pocos, los errores habituales suelen salir demasiado chicos; el bootstrap recalcula el p-valor sin depender de eso.",
-   "res": "Pierde fuerza: significativo solo al 10 %."
+   "res": "Pierde fuerza: significativo solo al 10%."
   },
   {
    "e": "Logaritmo",
@@ -339,7 +339,7 @@ const DATOS = {
    "corto": "Sin Brasil",
    "p": 9.42996e-07,
    "b": 1.08378,
-   "duda": "Brasil pesa entre el 50 % y el 80 % de la información. ¿El resultado es del MERCOSUR o solo de Brasil?",
+   "duda": "Brasil pesa entre el 50% y el 80% de la información. ¿El resultado es del MERCOSUR o solo de Brasil?",
    "res": "Se mantiene sin Brasil, pero con solo dos socios con reglas sobre subsidios (Argentina y Uruguay) este p-valor es poco confiable."
   },
   {
@@ -385,7 +385,7 @@ const DATOS = {
    "p": 0.0318032,
    "b": 44.2519,
    "duda": "Solo tres socios (los del MERCOSUR) tienen reglas sobre subsidios en los datos. Con tan pocos, los errores habituales suelen salir demasiado chicos; el bootstrap recalcula el p-valor sin depender de eso.",
-   "res": "Sigue significativo al 5 %."
+   "res": "Sigue significativo al 5%."
   },
   {
    "e": "Tasa de crecimiento",
@@ -403,7 +403,7 @@ const DATOS = {
    "p": 0.0520275,
    "b": 44.2519,
    "duda": "Hay golpes que afectan a todos los destinos el mismo año, como la pandemia de 2020. Esta prueba los tiene en cuenta.",
-   "res": "Queda justo en el límite (5 %); significativo al 10 %."
+   "res": "Queda justo en el límite (5%); significativo al 10%."
   },
   {
    "e": "Tasa de crecimiento",
@@ -411,7 +411,7 @@ const DATOS = {
    "corto": "Sin Brasil",
    "p": 0.0122576,
    "b": 29.4093,
-   "duda": "Brasil pesa entre el 50 % y el 80 % de la información. ¿El resultado es del MERCOSUR o solo de Brasil?",
+   "duda": "Brasil pesa entre el 50% y el 80% de la información. ¿El resultado es del MERCOSUR o solo de Brasil?",
    "res": "Se mantiene sin Brasil, aunque más chico. Pero sin Brasil quedan solo dos socios con reglas sobre subsidios (Argentina y Uruguay, con pocas observaciones), así que este p-valor es poco confiable."
   },
   {

@@ -28,7 +28,7 @@ PRUEBAS = {
         "Por importador y año", "Hay golpes que afectan a todos los destinos el mismo año, como la pandemia de 2020. "
         "Esta prueba los tiene en cuenta.", ""),
     "Sin Brasil": (
-        "Sin Brasil", "Brasil pesa entre el 50 % y el 80 % de la información. ¿El resultado es del MERCOSUR o solo de Brasil?", ""),
+        "Sin Brasil", "Brasil pesa entre el 50% y el 80% de la información. ¿El resultado es del MERCOSUR o solo de Brasil?", ""),
     "PPML con los mismos efectos fijos": (
         "Poisson (niveles)", "En lugar de logaritmos o tasas, estima el valor exportado en dólares con un modelo de Poisson, "
         "que es el método recomendado para comercio con valores muy distintos entre sí.", ""),
@@ -44,16 +44,16 @@ PRUEBAS = {
 }
 RESULTADO = {
     ("Tasa de crecimiento", "Errores agrupados por importador (base)"): "Significativo: con más reglas sobre subsidios, la medida perjudica menos.",
-    ("Tasa de crecimiento", "Bootstrap salvaje (9.999 repeticiones)"): "Sigue significativo al 5 %.",
+    ("Tasa de crecimiento", "Bootstrap salvaje (9.999 repeticiones)"): "Sigue significativo al 5%.",
     ("Tasa de crecimiento", "Sorteo de socios placebo (1.999)"): "El resultado real es raro bajo el azar: no es casualidad.",
-    ("Tasa de crecimiento", "Errores agrupados por importador y año"): "Queda justo en el límite (5 %); significativo al 10 %.",
+    ("Tasa de crecimiento", "Errores agrupados por importador y año"): "Queda justo en el límite (5%); significativo al 10%.",
     ("Tasa de crecimiento", "Sin Brasil"): "Se mantiene sin Brasil, aunque más chico. Pero sin Brasil quedan solo dos socios con reglas sobre subsidios (Argentina y Uruguay, con pocas observaciones), así que este p-valor es poco confiable.",
     ("Tasa de crecimiento", "Placebo: adelanto de un año (t+1)"): "Pasa: la medida no \"afecta\" el año anterior. El resultado no viene de diferencias previas.",
     ("Tasa de crecimiento", "Efectos fijos de producto"): "Se hace más fuerte: no es un efecto de qué productos se exportan.",
     ("Tasa de crecimiento", "Efectos fijos de importador por producto"): "También se mantiene, como en el estudio original.",
     ("Tasa de crecimiento", "Bootstrap del efecto neto del Mercosur"): "No resiste: el MERCOSUR protege (el efecto neto no es negativo), pero no se puede afirmar que haga subir las exportaciones.",
     ("Logaritmo", "Errores agrupados por importador (base)"): "Significativo en la estimación base.",
-    ("Logaritmo", "Bootstrap salvaje (9.999 repeticiones)"): "Pierde fuerza: significativo solo al 10 %.",
+    ("Logaritmo", "Bootstrap salvaje (9.999 repeticiones)"): "Pierde fuerza: significativo solo al 10%.",
     ("Logaritmo", "Sorteo de socios placebo (1.999)"): "Raro bajo el azar.",
     ("Logaritmo", "Errores agrupados por importador y año"): "Se mantiene.",
     ("Logaritmo", "Sin Brasil"): "Se mantiene sin Brasil, pero con solo dos socios con reglas sobre subsidios (Argentina y Uruguay) este p-valor es poco confiable.",

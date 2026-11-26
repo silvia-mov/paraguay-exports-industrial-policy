@@ -162,8 +162,8 @@ for etiqueta, d in (("con umbral", con), ("sin umbral", sin)):
     resumen("3 PPML ec.(2) sin EF", etiqueta, f2)
     f6 = pf.fepois(f"EXPORTS ~ IP + IP_RTA_SUBS | {FE}", data=d, vcov=CL)
     fila = resumen("3 PPML ec.(6)", etiqueta, f6)
-    print(f"   en %: IP {100 * np.expm1(fila['b_IP']):.1f} %;"
-          f" Acuerdo {100 * np.expm1(fila['acuerdo_b']):.1f} %")
+    print(f"   en %: IP {100 * np.expm1(fila['b_IP']):.1f}%;"
+          f" Acuerdo {100 * np.expm1(fila['acuerdo_b']):.1f}%")
 
 # ---- 4. Diagnósticos ----------------------------------------------------------
 print("\n== 4. Diagnósticos")

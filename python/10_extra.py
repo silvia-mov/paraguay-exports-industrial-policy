@@ -85,7 +85,7 @@ for nombre, (y, d) in specs.items():
     Gamma = ((gam - gam.mean()) ** 2).mean() / gam.mean() ** 2
     G_ef = G / (1 + Gamma)
     peso = (gam / gam.sum()).sort_values(ascending=False)
-    top = ", ".join(f"{k} {100 * v:.0f} %" for k, v in peso.head(4).items())
+    top = ", ".join(f"{k} {100 * v:.0f}%" for k, v in peso.head(4).items())
     filas.append({"prueba": "1 G efectivo", "spec": nombre, "N": len(d), "G": G,
                   "G_efectivo": G_ef, "pesos": top})
     print(f"[{nombre}] G={G}  G efectivo={G_ef:.1f}  (peso en la varianza de β2: {top})")
