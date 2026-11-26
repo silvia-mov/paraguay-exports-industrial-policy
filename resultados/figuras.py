@@ -11,6 +11,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import tipografia  # noqa: E402,F401  (Fraunces + Source Sans 3)
 
 plt.rcParams["axes.facecolor"] = "none"  # el panel toma el fondo de la figura
 import matplotlib.ticker
